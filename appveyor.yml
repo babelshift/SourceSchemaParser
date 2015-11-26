@@ -18,8 +18,5 @@ build:
   publish_nuget: true
   include_nuget_references: true
   
-cache:
-  - packages -> **\packages.config
-  
 before_build:
   - cmd: nuget restore
