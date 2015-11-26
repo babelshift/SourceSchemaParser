@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SourceSchemaParser")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Parses Valve Source Engine game schema files into easy to use object oriented structures.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Justin Skiles")]
 [assembly: AssemblyProduct("SourceSchemaParser")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
