@@ -24,6 +24,8 @@ namespace SourceSchemaParser.VDFTools
             Stack<VToken> tokens = new Stack<VToken>();
             VRootToken rootCollection = null;
 
+            bool expectOpenBrace = false;
+
             foreach (var line in lines)
             {
                 string trimmedLine = line.Trim();
@@ -36,8 +38,13 @@ namespace SourceSchemaParser.VDFTools
 
                 if (trimmedLine.StartsWith("{"))
                 {
-                    // need to check for closing bracket matching with opening bracket
+                    expectOpenBrace = false;
                     continue;
+                }
+
+                if(expectOpenBrace)
+                {
+                    throw new InvalidOperationException("Could not parse the VDF because a an opening '{' is missing.");
                 }
 
                 if (trimmedLine.StartsWith("}"))
@@ -55,6 +62,10 @@ namespace SourceSchemaParser.VDFTools
                     {
                         var parentCollection = parentToken as VKeyValueCollection;
                         parentCollection.AddToken(top);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Could not parse the VDF because tokens can only be children of a token collection.");
                     }
                 }
 
@@ -76,6 +87,10 @@ namespace SourceSchemaParser.VDFTools
                             var parentCollection = parentToken as VKeyValueCollection;
                             parentCollection.AddKeyValuePair(key, value);
                         }
+                        else
+                        {
+                            throw new InvalidOperationException("Could not parse the VDF because tokens can only be children of a token collection.");
+                        }
                     }
                     // found a key, start a new key/value collection
                     else if (keyMatches.Count > 0)
@@ -83,8 +98,18 @@ namespace SourceSchemaParser.VDFTools
                         string key = keyMatches[0].Groups[1].Value;
                         VKeyValueCollection c = new VKeyValueCollection(key);
                         tokens.Push(c);
+                        expectOpenBrace = true;
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Could not parse VDF because the format is incorrect.");
                     }
                 }
+            }
+
+            if(tokens.Count > 0)
+            {
+                throw new InvalidOperationException("Could not parse VDF because it's unbalanced. Check for matching opening and closing braces.");
             }
 
             return JsonConvert.SerializeObject(rootCollection);

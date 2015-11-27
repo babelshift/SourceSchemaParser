@@ -21,6 +21,7 @@ namespace SourceSchemaParser.VDFTools
                     var collection = root.KeyValuePairs;
                     SerializeCollection(writer, serializer, collection);
                 }
+
                 if (token.TokenType == VTokenType.KeyValueCollection)
                 {
                     var collection = token as VKeyValueCollection;
@@ -32,6 +33,7 @@ namespace SourceSchemaParser.VDFTools
                     writer.WritePropertyName(keyValue.Key);
                     writer.WriteValue(keyValue.Value);
                 }
+
                 if (token.TokenType == VTokenType.Root)
                 {
                     writer.WriteEndObject();
