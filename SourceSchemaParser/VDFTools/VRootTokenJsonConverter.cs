@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.VDFTools
 {
+    /// <summary>
+    /// Handles serialization of VToken objects to JSON.
+    /// </summary>
     internal class VRootTokenJsonConverter : JsonConverter
     {
+        /// <summary>
+        /// Serializes a VToken depending on its type (VRootToken, VKeyValueCollection or VKeyvaluePair)
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="value"></param>
+        /// <param name="serializer"></param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var token = value as VToken;
@@ -52,6 +61,14 @@ namespace SourceSchemaParser.VDFTools
             writer.WriteEndObject();
         }
 
+        /// <summary>
+        /// Not supported nor implemented.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="objectType"></param>
+        /// <param name="existingValue"></param>
+        /// <param name="serializer"></param>
+        /// <returns></returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             throw new NotImplementedException();

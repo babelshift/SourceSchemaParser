@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SourceSchemaParser.VDFTools
 {
@@ -14,10 +9,14 @@ namespace SourceSchemaParser.VDFTools
         Root
     }
 
+    /// <summary>
+    /// Represents a generic token found in a VDF file such as a key or key/value pair
+    /// </summary>
     [JsonConverter(typeof(VRootTokenJsonConverter))]
     internal abstract class VToken
     {
         public VTokenType TokenType { get; private set; }
+
         public VToken(VTokenType tokenType)
         {
             TokenType = tokenType;
