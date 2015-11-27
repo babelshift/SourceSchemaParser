@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VDFTools\VDFConverter.cs" />
+    <Compile Include="VDFTools\VKeyValueCollection.cs" />
+    <Compile Include="VDFTools\VKeyValuePair.cs" />
+    <Compile Include="VDFTools\VRootToken.cs" />
+    <Compile Include="VDFTools\VRootTokenJsonConverter.cs" />
+    <Compile Include="VDFTools\VToken.cs" />
     <Compile Include="Dota2\DotaLeague.cs" />
     <Compile Include="Dota2\DotaSchemaItemLeague.cs" />
     <Compile Include="Dota2\DotaSchemaItemTool.cs" />

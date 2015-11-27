@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using SourceSchemaParser.JsonConverters;
+using SourceSchemaParser.VDFTools;
 
 namespace SourceSchemaParser
 {
@@ -79,7 +80,9 @@ namespace SourceSchemaParser
 
         private static IReadOnlyCollection<DotaSchemaItemLeague> GetLeaguesFromSchema(string schemaFilePath)
         {
-            JObject itemSchema = JObject.Parse(File.ReadAllText(schemaFilePath));
+            string json = VDFConverter.ToJson(schemaFilePath);
+
+            JObject itemSchema = JObject.Parse(json);
 
             JToken item = itemSchema["items_game"]["items"];
 
