@@ -13,7 +13,9 @@ namespace SourceSchemaParser
     {
         public static IReadOnlyCollection<DotaLeague> GetDotaLeagues(string schemaFilePath, string languageFilePath)
         {
-            var leagues = GetLeaguesFromSchema(schemaFilePath);
+            var vdfTextLines = File.ReadAllLines(schemaFilePath);
+
+            var leagues = GetLeaguesFromSchema(vdfTextLines);
 
             var tokens = GetLanguageTokensFromLanguageSchema(languageFilePath);
 
@@ -78,9 +80,9 @@ namespace SourceSchemaParser
             return tokens;
         }
 
-        private static IReadOnlyCollection<DotaSchemaItem> GetLeaguesFromSchema(string schemaFilePath)
+        private static IReadOnlyCollection<DotaSchemaItem> GetLeaguesFromSchema(string[] vdfTextLines)
         {
-            string json = VDFConverter.ToJson(schemaFilePath);
+            string json = VDFConverter.ToJson(vdfTextLines);
 
             JObject itemSchema = JObject.Parse(json);
 

@@ -11,17 +11,8 @@ namespace SourceSchemaParser.VDFTools
 {
     public static class VDFConverter
     {
-        /// <summary>
-        /// Given a file at the parameter path, the VDF file will be parsed and converted JSON. Currently only supports VDF files in which all tokens are on
-        /// separate lines. That is, '{', '}', '"key"', and '"key" "value"' tokens must be on separate lines until I come up with a better parser for different 
-        /// formatting styles.
-        /// </summary>
-        /// <param name="path">Path to the file that we want to parse.</param>
-        /// <returns></returns>
-        public static string ToJson(string path)
+        public static string ToJson(string[] vdfTextLines)
         {
-            var lines = File.ReadAllLines(path);
-
             Regex regexKey = new Regex("^\"((?:\\\\.|[^\\\\\"])*)\"", RegexOptions.Multiline);
             Regex regexKeyValue = new Regex("^\"((?:\\\\.|[^\"\\\\])*)\"[ \\t]*\"((?:\\\\.|[^\"\\\\])*)(\")?", RegexOptions.Multiline);
 
@@ -29,7 +20,7 @@ namespace SourceSchemaParser.VDFTools
             VRootToken rootCollection = null;
             bool expectOpenBrace = false;
 
-            foreach (var line in lines)
+            foreach (var line in vdfTextLines)
             {
                 // get rid of white spaces on the ends of each line
                 string trimmedLine = line.Trim();
@@ -48,7 +39,7 @@ namespace SourceSchemaParser.VDFTools
                 }
 
                 // if we are expecting an open brace at this point, the tree is unbalanced
-                if(expectOpenBrace)
+                if (expectOpenBrace)
                 {
                     throw new InvalidOperationException("Could not parse the VDF because a an opening '{' is missing.");
                 }
@@ -119,12 +110,26 @@ namespace SourceSchemaParser.VDFTools
             }
 
             // if there's anything left on the stack, we are dealing with an unbalanced tree
-            if(tokens.Count > 0)
+            if (tokens.Count > 0)
             {
                 throw new InvalidOperationException("Could not parse VDF because it's unbalanced. Check for matching opening and closing braces.");
             }
 
             return JsonConvert.SerializeObject(rootCollection);
+        }
+
+        /// <summary>
+        /// Given a string containing VDF formatted text, it will be parsed and converted JSON. Currently only supports VDF files in which all tokens are on
+        /// separate lines. That is, '{', '}', '"key"', and '"key" "value"' tokens must be on separate lines until I come up with a better parser for different 
+        /// formatting styles.
+        /// </summary>
+        /// <param name="path">Path to the file that we want to parse.</param>
+        /// <returns></returns>
+        public static string ToJson(string vdfText)
+        {
+            var lines = vdfText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+
+            return ToJson(lines);
         }
     }
 }

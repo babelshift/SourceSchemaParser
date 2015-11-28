@@ -51,7 +51,7 @@
     <Compile Include="VDFTools\VRootTokenJsonConverter.cs" />
     <Compile Include="VDFTools\VToken.cs" />
     <Compile Include="Dota2\DotaLeague.cs" />
-    <Compile Include="Dota2\DotaSchemaItemLeague.cs" />
+    <Compile Include="Dota2\DotaSchemaItem.cs" />
     <Compile Include="Dota2\DotaSchemaItemTool.cs" />
     <Compile Include="Dota2\DotaSchemaItemToolUsage.cs" />
     <Compile Include="JsonConverters\SchemaItemsToDotaLeaguesJsonConverter.cs" />
