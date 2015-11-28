@@ -15,7 +15,7 @@ namespace SourceSchemaParser
         public string Tier { get; private set; }
         public string Location { get; private set; }
 
-        public DotaLeague(DotaSchemaItemLeague schema)
+        public DotaLeague(DotaSchemaItem schema)
         {
             if (schema == null)
             {

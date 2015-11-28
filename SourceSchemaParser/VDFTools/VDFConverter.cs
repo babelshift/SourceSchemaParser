@@ -16,7 +16,7 @@ namespace SourceSchemaParser.VDFTools
         /// separate lines. That is, '{', '}', '"key"', and '"key" "value"' tokens must be on separate lines until I come up with a better parser for different 
         /// formatting styles.
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="path">Path to the file that we want to parse.</param>
         /// <returns></returns>
         public static string ToJson(string path)
         {

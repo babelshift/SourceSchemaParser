@@ -19,7 +19,7 @@ namespace SourceSchemaParser.JsonConverters
                 return null;
             }
 
-            List<DotaSchemaItemLeague> leagues = new List<DotaSchemaItemLeague>();
+            List<DotaSchemaItem> leagues = new List<DotaSchemaItem>();
 
             JToken t = JToken.Load(reader);
             var properties = t.Children<JProperty>();
@@ -37,7 +37,7 @@ namespace SourceSchemaParser.JsonConverters
 
                 if (isLeague && !isAdmin)
                 {
-                    var league = JsonConvert.DeserializeObject<DotaSchemaItemLeague>(item.Value.ToString());
+                    var league = JsonConvert.DeserializeObject<DotaSchemaItem>(item.Value.ToString());
                     league.DefIndex = int.Parse(item.Name);
                     leagues.Add(league);
                 }
@@ -50,7 +50,7 @@ namespace SourceSchemaParser.JsonConverters
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof(IList<DotaSchemaItemLeague>).IsAssignableFrom(objectType);
+            return typeof(IList<DotaSchemaItem>).IsAssignableFrom(objectType);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace SourceSchemaParser
             return dotaLeagues;
         }
 
-        private static List<DotaLeague> FlattenDotaSchemaItemLeagues(IReadOnlyCollection<DotaSchemaItemLeague> leagues)
+        private static List<DotaLeague> FlattenDotaSchemaItemLeagues(IReadOnlyCollection<DotaSchemaItem> leagues)
         {
             List<DotaLeague> dotaLeagues = new List<DotaLeague>();
             foreach (var league in leagues)
@@ -36,7 +36,7 @@ namespace SourceSchemaParser
             return dotaLeagues;
         }
 
-        private static void ReplaceTokensWithLocalizedValues(IReadOnlyCollection<DotaSchemaItemLeague> leagues, IDictionary<string, string> tokens)
+        private static void ReplaceTokensWithLocalizedValues(IReadOnlyCollection<DotaSchemaItem> leagues, IDictionary<string, string> tokens)
         {
             foreach (var league in leagues)
             {
@@ -78,7 +78,7 @@ namespace SourceSchemaParser
             return tokens;
         }
 
-        private static IReadOnlyCollection<DotaSchemaItemLeague> GetLeaguesFromSchema(string schemaFilePath)
+        private static IReadOnlyCollection<DotaSchemaItem> GetLeaguesFromSchema(string schemaFilePath)
         {
             string json = VDFConverter.ToJson(schemaFilePath);
 
@@ -86,9 +86,9 @@ namespace SourceSchemaParser
 
             JToken item = itemSchema["items_game"]["items"];
 
-            var leagues = JsonConvert.DeserializeObject<IList<DotaSchemaItemLeague>>(item.ToString(), new SchemaItemsToDotaLeaguesJsonConverter());
+            var leagues = JsonConvert.DeserializeObject<IList<DotaSchemaItem>>(item.ToString(), new SchemaItemsToDotaLeaguesJsonConverter());
 
-            return new ReadOnlyCollection<DotaSchemaItemLeague>(leagues);
+            return new ReadOnlyCollection<DotaSchemaItem>(leagues);
         }
     }
 }

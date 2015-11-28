@@ -12,9 +12,6 @@ namespace SourceSchemaParser
         [JsonProperty("image_inventory")]
         public string ImageInventoryPath { get; set; }
 
-        [JsonProperty("image_banner")]
-        public string ImageBannerPath { get; set; }
-
         [JsonProperty("item_name")]
         public string NameLocalized { get; set; }
 
