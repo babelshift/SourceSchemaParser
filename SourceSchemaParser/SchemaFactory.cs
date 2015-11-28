@@ -84,8 +84,7 @@ namespace SourceSchemaParser
 
             return tokens;
         }
-
-
+        
         #endregion
 
         #region Parse Out Leagues from VDF and JSON
