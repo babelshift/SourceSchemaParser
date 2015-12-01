@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SourceSchemaParser.JsonConverters;
 
 namespace SourceSchemaParser.Dota2
 {
@@ -19,13 +20,15 @@ namespace SourceSchemaParser.Dota2
         public string SoundSet { get; set; }
 
         [JsonProperty("Enabled")]
-        public string Enabled { get; set; }
+        [JsonConverter(typeof(StringToBoolJsonConverter))]
+        public bool Enabled { get; set; }
 
         [JsonProperty("Level")]
         public string Level { get; set; }
 
         [JsonProperty("BotImplemented")]
-        public string BotImplemented { get; set; }
+        [JsonConverter(typeof(StringToBoolJsonConverter))]
+        public bool BotImplemented { get; set; }
 
         [JsonProperty("NewHero")]
         public string NewHero { get; set; }
@@ -73,7 +76,7 @@ namespace SourceSchemaParser.Dota2
         public string Ability8 { get; set; }
 
         [JsonProperty("ArmorPhysical")]
-        public string ArmorPhysical { get; set; }
+        public double ArmorPhysical { get; set; }
 
         [JsonProperty("MagicalResistance")]
         public string MagicalResistance { get; set; }
@@ -82,91 +85,92 @@ namespace SourceSchemaParser.Dota2
         public string AttackCapabilities { get; set; }
 
         [JsonProperty("AttackDamageMin")]
-        public string AttackDamageMin { get; set; }
+        public int AttackDamageMin { get; set; }
 
         [JsonProperty("AttackDamageMax")]
-        public string AttackDamageMax { get; set; }
+        public int AttackDamageMax { get; set; }
 
         [JsonProperty("AttackDamageType")]
         public string AttackDamageType { get; set; }
 
         [JsonProperty("AttackRate")]
-        public string AttackRate { get; set; }
+        public double AttackRate { get; set; }
 
         [JsonProperty("AttackAnimationPoint")]
-        public string AttackAnimationPoint { get; set; }
+        public double AttackAnimationPoint { get; set; }
 
         [JsonProperty("AttackAcquisitionRange")]
-        public string AttackAcquisitionRange { get; set; }
+        public int AttackAcquisitionRange { get; set; }
 
         [JsonProperty("AttackRange")]
-        public string AttackRange { get; set; }
+        public int AttackRange { get; set; }
 
         [JsonProperty("ProjectileModel")]
         public string ProjectileModel { get; set; }
 
         [JsonProperty("ProjectileSpeed")]
-        public string ProjectileSpeed { get; set; }
+        public int ProjectileSpeed { get; set; }
 
         [JsonProperty("AttributePrimary")]
         public string AttributePrimary { get; set; }
 
         [JsonProperty("AttributeBaseStrength")]
-        public string AttributeBaseStrength { get; set; }
+        public int AttributeBaseStrength { get; set; }
 
         [JsonProperty("AttributeStrengthGain")]
-        public string AttributeStrengthGain { get; set; }
+        public double AttributeStrengthGain { get; set; }
 
         [JsonProperty("AttributeBaseIntelligence")]
-        public string AttributeBaseIntelligence { get; set; }
+        public int AttributeBaseIntelligence { get; set; }
 
         [JsonProperty("AttributeIntelligenceGain")]
-        public string AttributeIntelligenceGain { get; set; }
+        public double AttributeIntelligenceGain { get; set; }
 
         [JsonProperty("AttributeBaseAgility")]
-        public string AttributeBaseAgility { get; set; }
+        public int AttributeBaseAgility { get; set; }
 
         [JsonProperty("AttributeAgilityGain")]
-        public string AttributeAgilityGain { get; set; }
+        public double AttributeAgilityGain { get; set; }
 
         [JsonProperty("BountyXP")]
-        public string BountyXP { get; set; }
+        public int BountyXP { get; set; }
 
         [JsonProperty("BountyGoldMin")]
-        public string BountyGoldMin { get; set; }
+        public int BountyGoldMin { get; set; }
 
         [JsonProperty("BountyGoldMax")]
-        public string BountyGoldMax { get; set; }
+        public int BountyGoldMax { get; set; }
 
         [JsonProperty("BoundsHullName")]
         public string BoundsHullName { get; set; }
 
         [JsonProperty("RingRadius")]
-        public string RingRadius { get; set; }
+        public int RingRadius { get; set; }
 
         [JsonProperty("MovementCapabilities")]
         public string MovementCapabilities { get; set; }
 
         [JsonProperty("MovementSpeed")]
-        public string MovementSpeed { get; set; }
+        public int MovementSpeed { get; set; }
 
         [JsonProperty("MovementTurnRate")]
-        public string MovementTurnRate { get; set; }
+        public double MovementTurnRate { get; set; }
 
         [JsonProperty("HasAggressiveStance")]
-        public string HasAggressiveStance { get; set; }
+        [JsonConverter(typeof(StringToBoolJsonConverter))]
+        public bool HasAggressiveStance { get; set; }
 
         [JsonProperty("StatusHealth")]
-        public string StatusHealth { get; set; }
+        public int StatusHealth { get; set; }
 
         [JsonProperty("StatusHealthRegen")]
-        public string StatusHealthRegen { get; set; }
+        public double StatusHealthRegen { get; set; }
 
         [JsonProperty("StatusMana")]
-        public string StatusMana { get; set; }
+        public int StatusMana { get; set; }
 
         [JsonProperty("StatusManaRegen")]
-        public string StatusManaRegen { get; set; }
+        public double StatusManaRegen { get; set; }
 
         [JsonProperty("TeamName")]
         public string TeamName { get; set; }
@@ -181,19 +185,20 @@ namespace SourceSchemaParser.Dota2
         public string UnitRelationshipClass { get; set; }
 
         [JsonProperty("VisionDaytimeRange")]
-        public string VisionDaytimeRange { get; set; }
+        public int VisionDaytimeRange { get; set; }
 
         [JsonProperty("VisionNighttimeRange")]
-        public string VisionNighttimeRange { get; set; }
+        public int VisionNighttimeRange { get; set; }
 
         [JsonProperty("HasInventory")]
-        public string HasInventory { get; set; }
+        [JsonConverter(typeof(StringToBoolJsonConverter))]
+        public bool HasInventory { get; set; }
 
         [JsonProperty("VoiceBackgroundSound")]
         public string VoiceBackgroundSound { get; set; }
 
         [JsonProperty("HealthBarOffset")]
-        public string HealthBarOffset { get; set; }
+        public int HealthBarOffset { get; set; }
 
         [JsonProperty("IdleExpression")]
         public string IdleExpression { get; set; }

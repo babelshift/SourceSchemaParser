@@ -47,6 +47,7 @@
     <Compile Include="Dota2\DotaHero.cs" />
     <Compile Include="Dota2\DotaHeroSchemaItem.cs" />
     <Compile Include="JsonConverters\DotaSchemHeroItemToDotaHeroJsonConverter.cs" />
+    <Compile Include="JsonConverters\StringToBoolJsonConverter.cs" />
     <Compile Include="VDFTools\VDFConverter.cs" />
     <Compile Include="VDFTools\VKeyValueCollection.cs" />
     <Compile Include="VDFTools\VKeyValuePair.cs" />
