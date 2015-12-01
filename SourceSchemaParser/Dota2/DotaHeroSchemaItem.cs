@@ -4,6 +4,9 @@ namespace SourceSchemaParser.Dota2
 {
     public class DotaHeroSchemaItem
     {
+        [JsonProperty("HeroID")]
+        public int HeroId { get; set; }
+
         public string Name { get; set; }
 
         [JsonProperty("BaseClass")]
