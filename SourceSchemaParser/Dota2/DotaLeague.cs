@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SourceSchemaParser
+namespace SourceSchemaParser.Dota2
 {
     public class DotaLeague
     {

@@ -3,10 +3,13 @@ using Newtonsoft.Json.Linq;
 using SourceSchemaParser.Dota2;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SourceSchemaParser.JsonConverters
 {
-    internal class SchemaItemsToDotaLeaguesJsonConverter : JsonConverter
+    internal class DotaSchemHeroItemToDotaHeroJsonConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -20,38 +23,32 @@ namespace SourceSchemaParser.JsonConverters
                 return null;
             }
 
-            List<DotaSchemaItem> leagues = new List<DotaSchemaItem>();
+            List<DotaHeroSchemaItem> heroes = new List<DotaHeroSchemaItem>();
 
             JToken t = JToken.Load(reader);
             var properties = t.Children<JProperty>();
             foreach (var item in properties)
             {
+                if(item.Name == "Version")
+                {
+                    continue;
+                }
+
                 JObject o = (JObject)item.Value;
 
-                bool isLeague = o["prefab"] != null && o["prefab"].ToString() == "league";
+                DotaHeroSchemaItem heroSchemaItem = JsonConvert.DeserializeObject<DotaHeroSchemaItem>(item.Value.ToString());
 
-                bool isAdmin =
-                    o["tool"] != null
-                    && o["tool"]["usage"] != null
-                    && o["tool"]["usage"]["admin"] != null
-                    && o["tool"]["usage"]["admin"].ToString() == "1";
-
-                if (isLeague && !isAdmin)
-                {
-                    var league = JsonConvert.DeserializeObject<DotaSchemaItem>(item.Value.ToString());
-                    league.DefIndex = int.Parse(item.Name);
-                    leagues.Add(league);
-                }
+                heroes.Add(heroSchemaItem);
             }
 
-            return leagues;
+            return heroes;
         }
 
         public override bool CanWrite { get { return false; } }
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof(IList<DotaSchemaItem>).IsAssignableFrom(objectType);
+            return typeof(IList<DotaHeroSchemaItem>).IsAssignableFrom(objectType);
         }
     }
 }

@@ -6,12 +6,23 @@ using System.Collections.ObjectModel;
 using System.IO;
 using SourceSchemaParser.JsonConverters;
 using SourceSchemaParser.VDFTools;
+using SourceSchemaParser.Dota2;
 
 namespace SourceSchemaParser
 {
     public static class SchemaFactory
     {
-        #region Public Entry Points
+        public static IReadOnlyCollection<DotaHeroSchemaItem> GetDotaHeroes(string vdfText, string languageFilePath)
+        {
+            string json = VDFConverter.ToJson(vdfText);
+            JObject heroSchema = JObject.Parse(json);
+            JToken item = heroSchema["DOTAHeroes"];
+            var heroes = JsonConvert.DeserializeObject<IList<DotaHeroSchemaItem>>(item.ToString(), new DotaSchemHeroItemToDotaHeroJsonConverter());
+
+            return new ReadOnlyCollection<DotaHeroSchemaItem>(heroes);
+        }
+
+        #region Dota Leagues
 
         public static IReadOnlyCollection<DotaLeague> GetDotaLeaguesFromText(string vdfText, string languageFilePath)
         {
@@ -28,8 +39,6 @@ namespace SourceSchemaParser
             return GetDotaLeagues(languageFilePath, leagesFromSchema);
         }
 
-        #endregion
-
         #region Merge Parsed Leagues and Language Tokens
 
         private static IReadOnlyCollection<DotaLeague> GetDotaLeagues(string languageFilePath, IReadOnlyCollection<DotaSchemaItem> parsedDotaLeagues)
@@ -42,7 +51,7 @@ namespace SourceSchemaParser
 
             return dotaLeagues;
         }
-        
+
         private static void ReplaceTokensWithLocalizedValues(IReadOnlyCollection<DotaSchemaItem> leagues, IDictionary<string, string> tokens)
         {
             foreach (var league in leagues)
@@ -84,7 +93,7 @@ namespace SourceSchemaParser
 
             return tokens;
         }
-        
+
         #endregion
 
         #region Parse Out Leagues from VDF and JSON
@@ -115,7 +124,7 @@ namespace SourceSchemaParser
         }
 
         #endregion
-        
+
         private static List<DotaLeague> FlattenDotaSchemaItemLeagues(IReadOnlyCollection<DotaSchemaItem> leagues)
         {
             List<DotaLeague> dotaLeagues = new List<DotaLeague>();
@@ -127,5 +136,7 @@ namespace SourceSchemaParser
 
             return dotaLeagues;
         }
+
+        #endregion
     }
 }

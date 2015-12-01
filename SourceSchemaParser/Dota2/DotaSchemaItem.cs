@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SourceSchemaParser
+namespace SourceSchemaParser.Dota2
 {
     public class DotaSchemaItem : SchemaItem
     {
