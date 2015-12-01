@@ -37,6 +37,7 @@ namespace SourceSchemaParser.JsonConverters
                 JObject o = (JObject)item.Value;
 
                 DotaHeroSchemaItem heroSchemaItem = JsonConvert.DeserializeObject<DotaHeroSchemaItem>(item.Value.ToString());
+                heroSchemaItem.Name = item.Name;
 
                 heroes.Add(heroSchemaItem);
             }

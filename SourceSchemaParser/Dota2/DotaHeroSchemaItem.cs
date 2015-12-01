@@ -4,6 +4,8 @@ namespace SourceSchemaParser.Dota2
 {
     public class DotaHeroSchemaItem
     {
+        public string Name { get; set; }
+
         [JsonProperty("BaseClass")]
         public string BaseClass { get; set; }
 
@@ -201,6 +203,15 @@ namespace SourceSchemaParser.Dota2
 
         [JsonProperty("ARDMDisabled")]
         public string ARDMDisabled { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+
+        [JsonProperty("role")]
+        public string Role { get; set; }
+
+        [JsonProperty("rolelevels")]
+        public string RoleLevels { get; set; }
 
         //[JsonProperty("HUD")]
         //public HUD HUD { get; set; }
