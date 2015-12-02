@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.JsonConverters
 {
-    internal class DotaSchemHeroItemToDotaHeroJsonConverter : JsonConverter
+    internal class SchemaItemToDotaHeroJsonConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

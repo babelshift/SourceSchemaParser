@@ -175,6 +175,9 @@ namespace SourceSchemaParser.Dota2
         [JsonProperty("TeamName")]
         public string TeamName { get; set; }
 
+        [JsonProperty("Team")]
+        public string Team { get; set; }
+            
         [JsonProperty("CombatClassAttack")]
         public string CombatClassAttack { get; set; }
 

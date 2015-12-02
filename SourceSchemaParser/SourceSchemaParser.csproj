@@ -44,9 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dota2\DotaAbilitySchemaItem.cs" />
+    <Compile Include="Dota2\DotaAbilitySpecialSchemaItem.cs" />
     <Compile Include="Dota2\DotaHero.cs" />
     <Compile Include="Dota2\DotaHeroSchemaItem.cs" />
-    <Compile Include="JsonConverters\DotaSchemHeroItemToDotaHeroJsonConverter.cs" />
+    <Compile Include="JsonConverters\DotaAbilitySpecialSchemaItemJsonConverter.cs" />
+    <Compile Include="JsonConverters\SchemaItemToDotaAbilityJsonConverter.cs" />
+    <Compile Include="JsonConverters\SchemaItemToDotaHeroJsonConverter.cs" />
     <Compile Include="JsonConverters\StringToBoolJsonConverter.cs" />
     <Compile Include="VDFTools\VDFConverter.cs" />
     <Compile Include="VDFTools\VKeyValueCollection.cs" />

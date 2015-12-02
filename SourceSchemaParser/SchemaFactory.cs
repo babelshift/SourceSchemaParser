@@ -12,15 +12,29 @@ namespace SourceSchemaParser
 {
     public static class SchemaFactory
     {
-        public static IReadOnlyCollection<DotaHeroSchemaItem> GetDotaHeroes(string vdfText, string languageFilePath)
+        public static IReadOnlyCollection<DotaAbilitySchemaItem> GetDotaAbilities(string vdfText, string languageFilePath)
+        {
+            string json = VDFConverter.ToJson(vdfText);
+            JObject abilitiesSchema = JObject.Parse(json);
+            JToken item = abilitiesSchema["DOTAAbilities"];
+            var abilities = JsonConvert.DeserializeObject<IList<DotaAbilitySchemaItem>>(item.ToString(), new SchemaItemToDotaAbilityJsonConverter());
+
+            return new ReadOnlyCollection<DotaAbilitySchemaItem>(abilities);
+        }
+
+        #region Dota Heroes
+
+        public static IReadOnlyCollection<DotaHeroSchemaItem> GetDotaHeroes(string vdfText)
         {
             string json = VDFConverter.ToJson(vdfText);
             JObject heroSchema = JObject.Parse(json);
             JToken item = heroSchema["DOTAHeroes"];
-            var heroes = JsonConvert.DeserializeObject<IList<DotaHeroSchemaItem>>(item.ToString(), new DotaSchemHeroItemToDotaHeroJsonConverter());
+            var heroes = JsonConvert.DeserializeObject<IList<DotaHeroSchemaItem>>(item.ToString(), new SchemaItemToDotaHeroJsonConverter());
 
             return new ReadOnlyCollection<DotaHeroSchemaItem>(heroes);
         }
+
+        #endregion
 
         #region Dota Leagues
 
