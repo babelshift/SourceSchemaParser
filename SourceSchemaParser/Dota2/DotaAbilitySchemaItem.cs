@@ -11,6 +11,11 @@ namespace SourceSchemaParser.Dota2
 {
     public class DotaAbilitySchemaItem
     {
+        public DotaAbilitySchemaItem()
+        {
+            AbilitySpecials = new List<DotaAbilitySpecialSchemaItem>();
+        }
+
         [JsonProperty("ID")]
         public int Id { get; set; }
 

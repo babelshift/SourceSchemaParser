@@ -46,8 +46,9 @@
   <ItemGroup>
     <Compile Include="Dota2\DotaAbilitySchemaItem.cs" />
     <Compile Include="Dota2\DotaAbilitySpecialSchemaItem.cs" />
-    <Compile Include="Dota2\DotaHero.cs" />
+    <Compile Include="Dota2\DotaHeroAbilityBehaviorType.cs" />
     <Compile Include="Dota2\DotaHeroSchemaItem.cs" />
+    <Compile Include="Dota2\DotaEnumType.cs" />
     <Compile Include="JsonConverters\DotaAbilitySpecialSchemaItemJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToDotaAbilityJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToDotaHeroJsonConverter.cs" />

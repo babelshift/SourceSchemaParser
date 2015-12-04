@@ -12,26 +12,69 @@ namespace SourceSchemaParser
 {
     public static class SchemaFactory
     {
-        public static IReadOnlyCollection<DotaAbilitySchemaItem> GetDotaAbilities(string vdfText, string languageFilePath)
+        public static IReadOnlyDictionary<string, string> GetDotaPublicLocalizationKeys(string vdf)
         {
-            string json = VDFConverter.ToJson(vdfText);
-            JObject abilitiesSchema = JObject.Parse(json);
-            JToken item = abilitiesSchema["DOTAAbilities"];
-            var abilities = JsonConvert.DeserializeObject<IList<DotaAbilitySchemaItem>>(item.ToString(), new SchemaItemToDotaAbilityJsonConverter());
+            if(String.IsNullOrEmpty(vdf))
+            {
+                throw new ArgumentNullException("vdf");
+            }
 
-            return new ReadOnlyCollection<DotaAbilitySchemaItem>(abilities);
+            string json = VDFConverter.ToJson(vdf);
+
+            var keys = GetLanguageTokensFromLanguageSchema(json);
+
+            return new ReadOnlyDictionary<string, string>(keys);
         }
 
         #region Dota Heroes
 
-        public static IReadOnlyCollection<DotaHeroSchemaItem> GetDotaHeroes(string vdfText)
+        public static IReadOnlyCollection<DotaAbilitySchemaItem> GetDotaHeroAbilities(string vdf)
         {
-            string json = VDFConverter.ToJson(vdfText);
-            JObject heroSchema = JObject.Parse(json);
-            JToken item = heroSchema["DOTAHeroes"];
-            var heroes = JsonConvert.DeserializeObject<IList<DotaHeroSchemaItem>>(item.ToString(), new SchemaItemToDotaHeroJsonConverter());
+            if (String.IsNullOrEmpty(vdf))
+            {
+                throw new ArgumentNullException("vdf");
+            }
 
-            return new ReadOnlyCollection<DotaHeroSchemaItem>(heroes);
+            JObject schema = SchemaToJObject(vdf);
+
+            JToken item = null;
+            if (schema.TryGetValue("DOTAAbilities", out item))
+            {
+                var abilities = JsonConvert.DeserializeObject<IList<DotaAbilitySchemaItem>>(item.ToString(), new SchemaItemToDotaAbilityJsonConverter());
+                return new ReadOnlyCollection<DotaAbilitySchemaItem>(abilities);
+            }
+            else
+            {
+                throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Heroes Abilities schema file.");
+            }
+        }
+
+        private static JObject SchemaToJObject(string vdf)
+        {
+            string json = VDFConverter.ToJson(vdf);
+            JObject abilitiesSchema = JObject.Parse(json);
+            return abilitiesSchema;
+        }
+
+        public static IReadOnlyCollection<DotaHeroSchemaItem> GetDotaHeroes(string vdf)
+        {
+            if (String.IsNullOrEmpty(vdf))
+            {
+                throw new ArgumentNullException("vdf");
+            }
+
+            JObject schema = SchemaToJObject(vdf);
+
+            JToken item = null;
+            if (schema.TryGetValue("DOTAHeroes", out item))
+            {
+                var heroes = JsonConvert.DeserializeObject<IList<DotaHeroSchemaItem>>(item.ToString(), new SchemaItemToDotaHeroJsonConverter());
+                return new ReadOnlyCollection<DotaHeroSchemaItem>(heroes);
+            }
+            else
+            {
+                throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Heroes schema file.");
+            }
         }
 
         #endregion
@@ -83,31 +126,6 @@ namespace SourceSchemaParser
             }
         }
 
-        private static string GetLanguageToken(string key, IDictionary<string, string> tokens)
-        {
-            string localizedValue = String.Empty;
-            bool exists = tokens.TryGetValue(key, out localizedValue);
-            if (exists)
-            {
-                return localizedValue;
-            }
-            else
-            {
-                return "Unknown";
-            }
-        }
-
-        private static IDictionary<string, string> GetLanguageTokensFromLanguageSchema(string languageFilePath)
-        {
-            JObject languageSchema = JObject.Parse(File.ReadAllText(languageFilePath));
-
-            JToken item = languageSchema["lang"]["Tokens"];
-
-            var tokens = JsonConvert.DeserializeObject<IDictionary<string, string>>(item.ToString(), new SchemaLanguageTokensJsonConverter());
-
-            return tokens;
-        }
-
         #endregion
 
         #region Parse Out Leagues from VDF and JSON
@@ -152,5 +170,38 @@ namespace SourceSchemaParser
         }
 
         #endregion
+
+        private static string GetLanguageToken(string key, IDictionary<string, string> tokens)
+        {
+            string localizedValue = String.Empty;
+            bool exists = tokens.TryGetValue(key, out localizedValue);
+            if (exists)
+            {
+                return localizedValue;
+            }
+            else
+            {
+                return "Unknown";
+            }
+        }
+
+        private static IDictionary<string, string> GetLanguageTokensFromLanguageSchema(string vdfText)
+        {
+            JObject languageSchema = JObject.Parse(vdfText);
+
+            JToken langItem = null;
+            JToken item = null;
+            if (languageSchema.TryGetValue("lang", out langItem) && ((JObject)langItem).TryGetValue("Tokens", out item))
+            {
+                var tokens = JsonConvert.DeserializeObject<IDictionary<string, string>>(item.ToString(), new SchemaLanguageTokensJsonConverter());
+
+                return tokens;
+            }
+            else
+            {
+                throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Public Localization schema file.");
+            }
+        }
+
     }
 }
