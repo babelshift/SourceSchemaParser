@@ -46,9 +46,19 @@
   <ItemGroup>
     <Compile Include="Dota2\DotaAbilitySchemaItem.cs" />
     <Compile Include="Dota2\DotaAbilitySpecialSchemaItem.cs" />
+    <Compile Include="Dota2\DotaUnitTargetFlag.cs" />
+    <Compile Include="Dota2\DotaUnitTargetTeamType.cs" />
+    <Compile Include="Dota2\DotaUnitTargetType.cs" />
+    <Compile Include="Dota2\DotaDamageType.cs" />
+    <Compile Include="Dota2\DotaSpellImmunityType.cs" />
+    <Compile Include="Dota2\DotaTeamType.cs" />
+    <Compile Include="Dota2\DotaAttackType.cs" />
     <Compile Include="Dota2\DotaHeroAbilityBehaviorType.cs" />
+    <Compile Include="Dota2\DotaHeroAbilityType.cs" />
+    <Compile Include="Dota2\DotaHeroPrimaryAttributeType.cs" />
     <Compile Include="Dota2\DotaHeroSchemaItem.cs" />
     <Compile Include="Dota2\DotaEnumType.cs" />
+    <Compile Include="Dota2\SchemaStringExtensions.cs" />
     <Compile Include="JsonConverters\DotaAbilitySpecialSchemaItemJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToDotaAbilityJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToDotaHeroJsonConverter.cs" />
