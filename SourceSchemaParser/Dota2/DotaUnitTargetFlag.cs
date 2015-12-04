@@ -14,7 +14,7 @@ namespace SourceSchemaParser.Dota2
         public static readonly DotaUnitTargetFlag NOT_MAGIC_IMMUNE_ALLIES = new DotaUnitTargetFlag("DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES", "Does Not Affect Magic Immune Allies", "This ability does not affect magic immune allies.");
         public static readonly DotaUnitTargetFlag NOT_ANCIENTS = new DotaUnitTargetFlag("DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS", "Does Not Affect Ancients", "This ability does not affect ancients.");
         public static readonly DotaUnitTargetFlag NOT_SUMMONED = new DotaUnitTargetFlag("DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED", "Does Not Affect Summoned", "This ability does not affect summoned targets.");
-        public static readonly DotaUnitTargetFlag NOT_CREEP_HERO = new DotaUnitTargetFlag("DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO", "Does Not Affects Creeps or Heroes", "This ability does not affect creep or hero targets.");
+        public static readonly DotaUnitTargetFlag NOT_CREEP_HERO = new DotaUnitTargetFlag("DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO", "Does Not Affect Creeps or Heroes", "This ability does not affect creep or hero targets.");
 
         public DotaUnitTargetFlag(string key, string displayName, string description)
             : base(key, displayName, description)

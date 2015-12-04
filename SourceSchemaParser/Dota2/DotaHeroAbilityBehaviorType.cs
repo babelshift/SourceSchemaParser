@@ -8,7 +8,7 @@ namespace SourceSchemaParser.Dota2
 {
     public sealed class DotaHeroAbilityBehaviorType : DotaEnumType
     {
-        public static readonly DotaHeroAbilityBehaviorType UNKNOWN = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_UNKNOWN", "Unknown", "This behavior is could not be found.");
+        public static readonly DotaHeroAbilityBehaviorType UNKNOWN = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_UNKNOWN", "Unknown", "This behavior could not be found.");
         public static readonly DotaHeroAbilityBehaviorType HIDDEN = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_HIDDEN", "Hidden", "This ability can be owned by a unit but can't be casted and wont show up on the HUD.");
         public static readonly DotaHeroAbilityBehaviorType PASSIVE = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_PASSIVE", "Passive", "Can't be casted but shows up on the ability HUD.");
         public static readonly DotaHeroAbilityBehaviorType NO_TARGET = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_NO_TARGET", "No Target", "Doesn't need a target to be cast, ability fires off as soon as the button is pressed.");
@@ -29,6 +29,11 @@ namespace SourceSchemaParser.Dota2
         public static readonly DotaHeroAbilityBehaviorType IGNORE_CHANNEL = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL", "Ignore Channel", "Unknown.");
         public static readonly DotaHeroAbilityBehaviorType DIRECTIONAL = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_DIRECTIONAL", "Directional", "This ability has a directional component.");
         public static readonly DotaHeroAbilityBehaviorType AURA = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_AURA", "Aura", "This ability has an aura effect.");
+        public static readonly DotaHeroAbilityBehaviorType NORMAL_WHEN_STOLEN = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN", "Normal When Stolen", "Unknown.");
+        public static readonly DotaHeroAbilityBehaviorType DONT_ALERT_TARGET = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET", "Does Not Alert Target", "This ability will not be seen by the target through debuffs or other spell effects.");
+        public static readonly DotaHeroAbilityBehaviorType UNRESTRICTED = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_UNRESTRICTED", "Unrestricted", "Unknown.");
+        public static readonly DotaHeroAbilityBehaviorType RUNE_TARGET = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_RUNE_TARGET", "Rune Target", "Unknown.");
+        public static readonly DotaHeroAbilityBehaviorType DONT_CANCEL_MOVEMENT = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT", "Does Not Cancel Movement", "This ability does not stop hero movement.");
 
         public DotaHeroAbilityBehaviorType(string key, string displayName, string description)
             : base(key, displayName, description)
