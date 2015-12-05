@@ -38,6 +38,7 @@ namespace SourceSchemaParser.JsonConverters
 
                 DotaHeroSchemaItem heroSchemaItem = JsonConvert.DeserializeObject<DotaHeroSchemaItem>(item.Value.ToString());
                 heroSchemaItem.Name = item.Name;
+                if(heroSchemaItem.Team == "good") { heroSchemaItem.Team = "Good"; } // fix stupid caps
 
                 heroes.Add(heroSchemaItem);
             }

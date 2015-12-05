@@ -12,6 +12,27 @@ namespace SourceSchemaParser
 {
     public static class SchemaFactory
     {
+        public static DotaItemBuildSchemaItem GetDotaItemBuild(string vdf)
+        {
+            if (String.IsNullOrEmpty(vdf))
+            {
+                throw new ArgumentNullException("vdf");
+            }
+
+            JObject schema = SchemaToJObject(vdf);
+
+            JToken item = null;
+            if (schema.TryGetValue("itembuilds", out item))
+            {
+                var itemBuild = JsonConvert.DeserializeObject<DotaItemBuildSchemaItem>(item.ToString());
+                return itemBuild;
+            }
+            else
+            {
+                throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Item Build schema file.");
+            }
+        }
+
         public static IReadOnlyDictionary<string, string> GetDotaPublicLocalizationKeys(string vdf)
         {
             if(String.IsNullOrEmpty(vdf))
@@ -52,8 +73,8 @@ namespace SourceSchemaParser
         private static JObject SchemaToJObject(string vdf)
         {
             string json = VDFConverter.ToJson(vdf);
-            JObject abilitiesSchema = JObject.Parse(json);
-            return abilitiesSchema;
+            JObject parsedSchema = JObject.Parse(json);
+            return parsedSchema;
         }
 
         public static IReadOnlyCollection<DotaHeroSchemaItem> GetDotaHeroes(string vdf)
@@ -202,6 +223,5 @@ namespace SourceSchemaParser
                 throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Public Localization schema file.");
             }
         }
-
     }
 }

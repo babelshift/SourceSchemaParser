@@ -17,7 +17,17 @@ namespace SourceSchemaParser.VDFTools
     {
         public VTokenType TokenType { get; private set; }
 
-        public VToken(VTokenType tokenType)
+        /// <summary>
+        /// The key of the key/value pair
+        /// </summary>
+        public string Key { get; private set; }
+
+        public VToken(string key)
+        {
+            Key = key;
+        }
+
+        public VToken(string key, VTokenType tokenType) : this(key)
         {
             TokenType = tokenType;
         }

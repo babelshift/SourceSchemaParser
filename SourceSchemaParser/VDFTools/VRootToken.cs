@@ -16,7 +16,7 @@ namespace SourceSchemaParser.VDFTools
         /// </summary>
         public VKeyValueCollection KeyValuePairs { get; private set; }
 
-        public VRootToken(VKeyValueCollection collection) : base(VTokenType.Root)
+        public VRootToken(VKeyValueCollection collection) : base(collection.Key, VTokenType.Root)
         {
             KeyValuePairs = collection;
         }

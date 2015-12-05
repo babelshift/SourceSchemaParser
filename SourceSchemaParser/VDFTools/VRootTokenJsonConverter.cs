@@ -56,7 +56,7 @@ namespace SourceSchemaParser.VDFTools
             writer.WriteStartObject();
             foreach (var keyValue in collection.KeyValuePairs)
             {
-                serializer.Serialize(writer, keyValue);
+                serializer.Serialize(writer, keyValue.Value);
             }
             writer.WriteEndObject();
         }
