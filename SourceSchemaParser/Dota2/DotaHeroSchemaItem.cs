@@ -75,6 +75,30 @@ namespace SourceSchemaParser.Dota2
         [JsonProperty("Ability8")]
         public string Ability8 { get; set; }
 
+        [JsonProperty("Ability9")]
+        public string Ability9 { get; set; }
+
+        [JsonProperty("Ability10")]
+        public string Ability10 { get; set; }
+
+        [JsonProperty("Ability11")]
+        public string Ability11 { get; set; }
+
+        [JsonProperty("Ability12")]
+        public string Ability12 { get; set; }
+
+        [JsonProperty("Ability13")]
+        public string Ability13 { get; set; }
+
+        [JsonProperty("Ability14")]
+        public string Ability14 { get; set; }
+
+        [JsonProperty("Ability15")]
+        public string Ability15 { get; set; }
+
+        [JsonProperty("Ability16")]
+        public string Ability16 { get; set; }
+
         [JsonProperty("ArmorPhysical")]
         public double ArmorPhysical { get; set; }
 
