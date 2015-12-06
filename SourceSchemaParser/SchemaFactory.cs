@@ -12,6 +12,28 @@ namespace SourceSchemaParser
 {
     public static class SchemaFactory
     {
+        public static IReadOnlyCollection<DotaItemAbilitySchemaItem> GetDotaItemAbilities(string vdf)
+        {
+            if (String.IsNullOrEmpty(vdf))
+            {
+                throw new ArgumentNullException("vdf");
+            }
+
+            JObject schema = SchemaToJObject(vdf);
+
+            JToken item = null;
+            if (schema.TryGetValue("DOTAAbilities", out item))
+            {
+                var itemAbilities = JsonConvert.DeserializeObject<IList<DotaItemAbilitySchemaItem>>(item.ToString(), new SchemaItemToDotaItemAbilityJsonConverter());
+                return new ReadOnlyCollection<DotaItemAbilitySchemaItem>(itemAbilities);
+            }
+            else
+            {
+                throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Items Abilities schema file.");
+            }
+        }
+
+
         public static DotaItemBuildSchemaItem GetDotaItemBuild(string vdf)
         {
             if (String.IsNullOrEmpty(vdf))
@@ -24,7 +46,7 @@ namespace SourceSchemaParser
             JToken item = null;
             if (schema.TryGetValue("itembuilds", out item))
             {
-                var itemBuild = JsonConvert.DeserializeObject<DotaItemBuildSchemaItem>(item.ToString());
+                var itemBuild = item.ToObject<DotaItemBuildSchemaItem>();
                 return itemBuild;
             }
             else

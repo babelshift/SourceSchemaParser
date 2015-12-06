@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.JsonConverters
 {
-    internal class StringToBoolJsonConverter : JsonConverter
+    public class StringToBoolJsonConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
