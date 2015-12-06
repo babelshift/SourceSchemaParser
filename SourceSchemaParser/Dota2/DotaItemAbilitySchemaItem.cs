@@ -27,9 +27,6 @@ namespace SourceSchemaParser.Dota2
         [JsonProperty("AbilityCastRange")]
         public string AbilityCastRange { get; set; }
 
-        [JsonProperty("AbilityRangeBuffer")]
-        public int AbilityRangeBuffer { get; set; }
-
         [JsonProperty("AbilityCastPoint")]
         public string AbilityCastPoint{ get; set; }
 
@@ -80,35 +77,70 @@ namespace SourceSchemaParser.Dota2
         public string ItemQuality { get; set; }
 
         [JsonProperty("ItemStackable")]
-        public string ItemStackable { get; set; }
+        [JsonConverter(typeof(StringToBoolJsonConverter))]
+        public bool ItemStackable { get; set; }
 
         [JsonProperty("ItemShareability")]
         public string ItemShareability { get; set; }
 
         [JsonProperty("ItemPermanent")]
-        public string ItemPermanent { get; set; }
+        [JsonConverter(typeof(StringToBoolJsonConverter))]
+        public bool ItemPermanent { get; set; }
 
         [JsonProperty("ItemInitialCharges")]
-        public int ItemInitialCharges { get; set; }
+        public int? ItemInitialCharges { get; set; }
+
+        [JsonProperty("ItemDisplayCharges")]
+        public int? ItemDisplayCharges { get; set; }
+
+        [JsonProperty("ItemStockMax")]
+        public int? ItemStockMax { get; set; }
+
+        [JsonProperty("ItemStockInitial")]
+        public int? ItemStockInitial { get; set; }
+
+        [JsonProperty("ItemStockTime")]
+        public double? ItemStockTime { get; set; }
 
         [JsonProperty("ItemPurchasable")]
-        [JsonConverter(typeof(StringToBoolJsonConverter))]
-        public bool ItemPurchasable { get; set; }
+        [JsonConverter(typeof(StringToNullableBoolJsonConverter))]
+        public bool? ItemPurchasable { get; set; }
 
         [JsonProperty("ItemSellable")]
-        [JsonConverter(typeof(StringToBoolJsonConverter))]
-        public bool ItemSellable { get; set; }
+        [JsonConverter(typeof(StringToNullableBoolJsonConverter))]
+        public bool? ItemSellable { get; set; }
 
         [JsonProperty("ItemKillable")]
-        [JsonConverter(typeof(StringToBoolJsonConverter))]
-        public bool ItemKillable { get; set; }
+        [JsonConverter(typeof(StringToNullableBoolJsonConverter))]
+        public bool? ItemKillable { get; set; }
 
         [JsonProperty("ItemDeclarations")]
-        [JsonConverter(typeof(StringToBoolJsonConverter))]
-        public bool ItemDeclarations { get; set; }
+        public string ItemDeclarations { get; set; }
 
         [JsonProperty("ItemCastOnPickup")]
-        [JsonConverter(typeof(StringToBoolJsonConverter))]
-        public bool ItemCastOnPickup { get; set; }
+        [JsonConverter(typeof(StringToNullableBoolJsonConverter))]
+        public bool? ItemCastOnPickup { get; set; }
+
+        [JsonProperty("ItemSupport")]
+        [JsonConverter(typeof(StringToNullableBoolJsonConverter))]
+        public bool? ItemSupport { get; set; }
+
+        [JsonProperty("ItemResult")]
+        public string ItemResult { get; set; }
+
+        [JsonProperty("ItemAlertable")]
+        [JsonConverter(typeof(StringToNullableBoolJsonConverter))]
+        public bool? ItemAlertable { get; set; }
+
+        [JsonProperty("ItemDroppable")]
+        [JsonConverter(typeof(StringToNullableBoolJsonConverter))]
+        public bool? ItemDroppable { get; set; }
+
+        [JsonProperty("ItemContributesToNetWorthWhenDropped")]
+        [JsonConverter(typeof(StringToNullableBoolJsonConverter))]
+        public bool? ItemContributesToNetWorthWhenDropped { get; set; }
+
+        [JsonProperty("ItemDisassembleRule")]
+        public string ItemDisassembleRule { get; set; }
     }
 }
