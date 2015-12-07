@@ -20,10 +20,10 @@ namespace SourceSchemaParser.VDFTools
             VRootToken rootCollection = null;
             bool expectOpenBrace = false;
 
-            foreach (var line in vdfTextLines)
+            for (int i = 0; i < vdfTextLines.Length; i++)
             {
                 // get rid of white spaces on the ends of each line
-                string trimmedLine = line.Trim();
+                string trimmedLine = vdfTextLines[i].Trim();
 
                 // skip empty lines and comments;
                 if (String.IsNullOrEmpty(trimmedLine) || trimmedLine.StartsWith("/"))
@@ -74,37 +74,49 @@ namespace SourceSchemaParser.VDFTools
                 // if we see a quote at the start, we are parsing either a key or a key/value pair
                 if (trimmedLine.StartsWith("\""))
                 {
-                    var keyValueMatches = regexKeyValue.Matches(trimmedLine);
-                    var keyMatches = regexKey.Matches(trimmedLine);
-
-                    // we see a key/value pair, so add it to the token collection on top of the stack
-                    if (keyValueMatches.Count > 0)
+                    while (true)
                     {
-                        string key = keyValueMatches[0].Groups[1].Value;
-                        string value = keyValueMatches[0].Groups[2].Value;
+                        var keyValueMatches = regexKeyValue.Matches(trimmedLine);
+                        var keyMatches = regexKey.Matches(trimmedLine);
 
-                        var parentToken = tokens.Peek();
-                        if (parentToken.TokenType == VTokenType.KeyValueCollection)
+                        // we see a key/value pair, so add it to the token collection on top of the stack
+                        if (keyValueMatches.Count > 0)
                         {
-                            var parentCollection = parentToken as VKeyValueCollection;
-                            parentCollection.AddKeyValuePair(key, value);
+                            // this line did not include an ending quote, so we need to loop forever and build up the multi-line value until we find one
+                            if (keyValueMatches[0].Groups.Count < 4 || keyValueMatches[0].Groups[3] == null || String.IsNullOrEmpty(keyValueMatches[0].Groups[3].Value))
+                            {
+                                trimmedLine += Environment.NewLine + vdfTextLines[++i].Trim();
+                                continue;
+                            }
+
+                            string key = keyValueMatches[0].Groups[1].Value;
+                            string value = keyValueMatches[0].Groups[2].Value;
+
+                            var parentToken = tokens.Peek();
+                            if (parentToken.TokenType == VTokenType.KeyValueCollection)
+                            {
+                                var parentCollection = parentToken as VKeyValueCollection;
+                                parentCollection.AddKeyValuePair(key, value);
+                            }
+                            else
+                            {
+                                throw new InvalidOperationException("Could not parse the VDF because tokens can only be children of a token collection.");
+                            }
+                        }
+                        // we see a key, so create a new key/value collection and add it to our stack
+                        else if (keyMatches.Count > 0)
+                        {
+                            string key = keyMatches[0].Groups[1].Value;
+                            VKeyValueCollection c = new VKeyValueCollection(key);
+                            tokens.Push(c);
+                            expectOpenBrace = true;
                         }
                         else
                         {
-                            throw new InvalidOperationException("Could not parse the VDF because tokens can only be children of a token collection.");
+                            throw new InvalidOperationException("Could not parse VDF because the format is incorrect.");
                         }
-                    }
-                    // we see a key, so create a new key/value collection and add it to our stack
-                    else if (keyMatches.Count > 0)
-                    {
-                        string key = keyMatches[0].Groups[1].Value;
-                        VKeyValueCollection c = new VKeyValueCollection(key);
-                        tokens.Push(c);
-                        expectOpenBrace = true;
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("Could not parse VDF because the format is incorrect.");
+
+                        break;
                     }
                 }
             }

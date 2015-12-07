@@ -32,8 +32,7 @@ namespace SourceSchemaParser
                 throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Items Abilities schema file.");
             }
         }
-
-
+        
         public static DotaItemBuildSchemaItem GetDotaItemBuild(string vdf)
         {
             if (String.IsNullOrEmpty(vdf))
@@ -62,9 +61,7 @@ namespace SourceSchemaParser
                 throw new ArgumentNullException("vdf");
             }
 
-            string json = VDFConverter.ToJson(vdf);
-
-            var keys = GetLanguageTokensFromLanguageSchema(json);
+            var keys = GetLanguageTokensFromLanguageSchema(vdf);
 
             return new ReadOnlyDictionary<string, string>(keys);
         }
@@ -92,13 +89,6 @@ namespace SourceSchemaParser
             }
         }
 
-        private static JObject SchemaToJObject(string vdf)
-        {
-            string json = VDFConverter.ToJson(vdf);
-            JObject parsedSchema = JObject.Parse(json);
-            return parsedSchema;
-        }
-
         public static IReadOnlyCollection<DotaHeroSchemaItem> GetDotaHeroes(string vdf)
         {
             if (String.IsNullOrEmpty(vdf))
@@ -124,27 +114,28 @@ namespace SourceSchemaParser
 
         #region Dota Leagues
 
-        public static IReadOnlyCollection<DotaLeague> GetDotaLeaguesFromText(string vdfText, string languageFilePath)
+        public static IReadOnlyCollection<DotaLeague> GetDotaLeaguesFromText(string[] itemSchemaVdfText, string[] localizationVdfText)
         {
-            var leaguesFromSchema = GetLeaguesFromItemSchema(vdfText);
+            var leaguesFromSchema = GetLeaguesFromItemSchema(itemSchemaVdfText);
 
-            return GetDotaLeagues(languageFilePath, leaguesFromSchema);
+            return GetDotaLeagues(leaguesFromSchema, localizationVdfText);
         }
 
-        public static IReadOnlyCollection<DotaLeague> GetDotaLeaguesFromFile(string schemaFilePath, string languageFilePath)
+        public static IReadOnlyCollection<DotaLeague> GetDotaLeaguesFromFile(string itemSchemaFilePath, string localizationFilePath)
         {
-            var vdfTextLines = File.ReadAllLines(schemaFilePath);
-            var leagesFromSchema = GetLeaguesFromItemSchema(vdfTextLines);
+            var itemSchemaVdfText = File.ReadAllLines(itemSchemaFilePath);
+            var leaguesFromSchema = GetLeaguesFromItemSchema(itemSchemaVdfText);
 
-            return GetDotaLeagues(languageFilePath, leagesFromSchema);
+            var localizationVdfText = File.ReadAllLines(localizationFilePath);
+
+            return GetDotaLeagues(leaguesFromSchema, localizationVdfText);
         }
 
         #region Merge Parsed Leagues and Language Tokens
 
-        private static IReadOnlyCollection<DotaLeague> GetDotaLeagues(string languageFilePath, IReadOnlyCollection<DotaSchemaItem> parsedDotaLeagues)
+        private static IReadOnlyCollection<DotaLeague> GetDotaLeagues(IReadOnlyCollection<DotaSchemaItem> parsedDotaLeagues, string[] localizationVdfText)
         {
-            var tokens = GetLanguageTokensFromLanguageSchema(languageFilePath);
-
+            var tokens = GetLanguageTokensFromLanguageSchema(localizationVdfText);
             ReplaceTokensWithLocalizedValues(parsedDotaLeagues, tokens);
 
             List<DotaLeague> dotaLeagues = FlattenDotaSchemaItemLeagues(parsedDotaLeagues);
@@ -180,13 +171,13 @@ namespace SourceSchemaParser
             return GetLeaguesFromJson(json);
         }
 
-        private static IReadOnlyCollection<DotaSchemaItem> GetLeaguesFromItemSchema(string[] vdfTextLines)
+        private static IReadOnlyCollection<DotaSchemaItem> GetLeaguesFromItemSchema(string[] vdfText)
         {
-            string json = VDFConverter.ToJson(vdfTextLines);
+            string json = VDFConverter.ToJson(vdfText);
 
             return GetLeaguesFromJson(json);
         }
-
+        
         private static IReadOnlyCollection<DotaSchemaItem> GetLeaguesFromJson(string json)
         {
             JObject itemSchema = JObject.Parse(json);
@@ -213,6 +204,13 @@ namespace SourceSchemaParser
         }
 
         #endregion
+        
+        private static JObject SchemaToJObject(string vdf)
+        {
+            string json = VDFConverter.ToJson(vdf);
+            JObject parsedSchema = JObject.Parse(json);
+            return parsedSchema;
+        }
 
         private static string GetLanguageToken(string key, IDictionary<string, string> tokens)
         {
@@ -228,9 +226,21 @@ namespace SourceSchemaParser
             }
         }
 
-        private static IDictionary<string, string> GetLanguageTokensFromLanguageSchema(string vdfText)
+        private static IDictionary<string, string> GetLanguageTokensFromLanguageSchema(string localizationVdfText)
         {
-            JObject languageSchema = JObject.Parse(vdfText);
+            var json = VDFConverter.ToJson(localizationVdfText);
+            return GetLanguageTokensFromLanguageJson(json);
+        }
+
+        private static IDictionary<string, string> GetLanguageTokensFromLanguageSchema(string[] localizationVdfText)
+        {
+            var json = VDFConverter.ToJson(localizationVdfText);
+            return GetLanguageTokensFromLanguageJson(json);
+        }
+
+        private static IDictionary<string, string> GetLanguageTokensFromLanguageJson(string json)
+        {
+            JObject languageSchema = JObject.Parse(json);
 
             JToken langItem = null;
             JToken item = null;
