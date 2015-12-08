@@ -12,6 +12,13 @@ namespace SourceSchemaParser
 {
     public static class SchemaFactory
     {
+        public static DotaSchema GetDotaSchema(string vdf)
+        {
+            string json = VDFConverter.ToJson(vdf);
+            var schema = JsonConvert.DeserializeObject<DotaSchemaContainer>(json);
+            return schema.Schema;
+        }
+
         public static IReadOnlyCollection<DotaItemAbilitySchemaItem> GetDotaItemAbilities(string vdf)
         {
             if (String.IsNullOrEmpty(vdf))
@@ -19,7 +26,7 @@ namespace SourceSchemaParser
                 throw new ArgumentNullException("vdf");
             }
 
-            JObject schema = SchemaToJObject(vdf);
+            JObject schema = ConvertVdfToJObject(vdf);
 
             JToken item = null;
             if (schema.TryGetValue("DOTAAbilities", out item))
@@ -33,27 +40,6 @@ namespace SourceSchemaParser
             }
         }
         
-        public static DotaItemBuildSchemaItem GetDotaItemBuild(string vdf)
-        {
-            if (String.IsNullOrEmpty(vdf))
-            {
-                throw new ArgumentNullException("vdf");
-            }
-
-            JObject schema = SchemaToJObject(vdf);
-
-            JToken item = null;
-            if (schema.TryGetValue("itembuilds", out item))
-            {
-                var itemBuild = item.ToObject<DotaItemBuildSchemaItem>();
-                return itemBuild;
-            }
-            else
-            {
-                throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Item Build schema file.");
-            }
-        }
-
         public static IReadOnlyDictionary<string, string> GetDotaPublicLocalizationKeys(string vdf)
         {
             if(String.IsNullOrEmpty(vdf))
@@ -75,7 +61,7 @@ namespace SourceSchemaParser
                 throw new ArgumentNullException("vdf");
             }
 
-            JObject schema = SchemaToJObject(vdf);
+            JObject schema = ConvertVdfToJObject(vdf);
 
             JToken item = null;
             if (schema.TryGetValue("DOTAAbilities", out item))
@@ -96,7 +82,7 @@ namespace SourceSchemaParser
                 throw new ArgumentNullException("vdf");
             }
 
-            JObject schema = SchemaToJObject(vdf);
+            JObject schema = ConvertVdfToJObject(vdf);
 
             JToken item = null;
             if (schema.TryGetValue("DOTAHeroes", out item))
@@ -107,6 +93,27 @@ namespace SourceSchemaParser
             else
             {
                 throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Heroes schema file.");
+            }
+        }
+
+        public static DotaItemBuildSchemaItem GetDotaItemBuild(string vdf)
+        {
+            if (String.IsNullOrEmpty(vdf))
+            {
+                throw new ArgumentNullException("vdf");
+            }
+
+            JObject schema = ConvertVdfToJObject(vdf);
+
+            JToken item = null;
+            if (schema.TryGetValue("itembuilds", out item))
+            {
+                var itemBuild = item.ToObject<DotaItemBuildSchemaItem>();
+                return itemBuild;
+            }
+            else
+            {
+                throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Item Build schema file.");
             }
         }
 
@@ -205,7 +212,7 @@ namespace SourceSchemaParser
 
         #endregion
         
-        private static JObject SchemaToJObject(string vdf)
+        private static JObject ConvertVdfToJObject(string vdf)
         {
             string json = VDFConverter.ToJson(vdf);
             JObject parsedSchema = JObject.Parse(json);

@@ -39,7 +39,7 @@ namespace SourceSchemaParser.JsonConverters
                 if (isLeague && !isAdmin)
                 {
                     var league = JsonConvert.DeserializeObject<DotaSchemaItem>(item.Value.ToString());
-                    league.DefIndex = int.Parse(item.Name);
+                    league.DefIndex = item.Name;
                     leagues.Add(league);
                 }
             }

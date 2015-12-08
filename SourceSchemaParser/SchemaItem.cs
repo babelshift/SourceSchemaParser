@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
+using SourceSchemaParser.JsonConverters;
+using System;
 
 namespace SourceSchemaParser
 {
     public class SchemaItem
     {
-        public int DefIndex { get; set; }
+        public string DefIndex { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -20,5 +22,14 @@ namespace SourceSchemaParser
 
         [JsonProperty("item_type_name")]
         public string TypeName { get; set; }
+
+        [JsonProperty("prefab")]
+        public string Prefab { get; set; }
+
+        [JsonProperty("creation_date")]
+        public DateTime CreationDate { get; set; }
+
+        [JsonProperty("expiration_date")]
+        public DateTime? ExpirationDate { get; set; }
     }
 }

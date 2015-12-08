@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SourceSchemaParser.JsonConverters;
 
 namespace SourceSchemaParser.Dota2
 {
@@ -11,5 +12,12 @@ namespace SourceSchemaParser.Dota2
 
         [JsonProperty("image_banner")]
         public string ImageBannerPath { get; set; }
+
+        [JsonProperty("item_rarity")]
+        public string ItemRarity { get; set; }
+
+        //[JsonConverter(typeof(StringToBoolJsonConverter))]
+        //[JsonProperty("used_by_heroes")]
+        //public bool UsedByHeroes { get; set; }
     }
 }
