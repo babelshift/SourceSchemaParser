@@ -4,6 +4,7 @@ namespace SourceSchemaParser.Dota2
 {
     public class DotaLeague
     {
+        public string ItemDef { get; private set; }
         public string Name { get; private set; }
         public string ImageInventoryPath { get; private set; }
         public string ImageBannerPath { get; private set; }
@@ -22,6 +23,7 @@ namespace SourceSchemaParser.Dota2
                 throw new ArgumentNullException("schema");
             }
 
+            ItemDef = schema.DefIndex;
             Name = schema.Name;
             ImageInventoryPath = schema.ImageInventoryPath;
             ImageBannerPath = schema.ImageBannerPath;
