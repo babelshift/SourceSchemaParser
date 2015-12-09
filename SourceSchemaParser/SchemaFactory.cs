@@ -12,16 +12,16 @@ namespace SourceSchemaParser
 {
     public static class SchemaFactory
     {
-        public static DotaSchema GetDotaSchema(string vdf)
+        public static DotaSchema GetDotaSchema(string[] vdf)
         {
             string json = VDFConverter.ToJson(vdf);
             var schema = JsonConvert.DeserializeObject<DotaSchemaContainer>(json);
             return schema.Schema;
         }
 
-        public static IReadOnlyCollection<DotaItemAbilitySchemaItem> GetDotaItemAbilities(string vdf)
+        public static IReadOnlyCollection<DotaItemAbilitySchemaItem> GetDotaItemAbilities(string[] vdf)
         {
-            if (String.IsNullOrEmpty(vdf))
+            if (vdf == null)
             {
                 throw new ArgumentNullException("vdf");
             }
@@ -40,9 +40,9 @@ namespace SourceSchemaParser
             }
         }
         
-        public static IReadOnlyDictionary<string, string> GetDotaPublicLocalizationKeys(string vdf)
+        public static IReadOnlyDictionary<string, string> GetDotaPublicLocalizationKeys(string[] vdf)
         {
-            if(String.IsNullOrEmpty(vdf))
+            if(vdf == null)
             {
                 throw new ArgumentNullException("vdf");
             }
@@ -54,9 +54,9 @@ namespace SourceSchemaParser
 
         #region Dota Heroes
 
-        public static IReadOnlyCollection<DotaAbilitySchemaItem> GetDotaHeroAbilities(string vdf)
+        public static IReadOnlyCollection<DotaAbilitySchemaItem> GetDotaHeroAbilities(string[] vdf)
         {
-            if (String.IsNullOrEmpty(vdf))
+            if (vdf == null)
             {
                 throw new ArgumentNullException("vdf");
             }
@@ -75,9 +75,9 @@ namespace SourceSchemaParser
             }
         }
 
-        public static IReadOnlyCollection<DotaHeroSchemaItem> GetDotaHeroes(string vdf)
+        public static IReadOnlyCollection<DotaHeroSchemaItem> GetDotaHeroes(string[] vdf)
         {
-            if (String.IsNullOrEmpty(vdf))
+            if (vdf == null)
             {
                 throw new ArgumentNullException("vdf");
             }
@@ -96,9 +96,9 @@ namespace SourceSchemaParser
             }
         }
 
-        public static DotaItemBuildSchemaItem GetDotaItemBuild(string vdf)
+        public static DotaItemBuildSchemaItem GetDotaItemBuild(string[] vdf)
         {
-            if (String.IsNullOrEmpty(vdf))
+            if (vdf == null)
             {
                 throw new ArgumentNullException("vdf");
             }
@@ -171,13 +171,6 @@ namespace SourceSchemaParser
 
         #region Parse Out Leagues from VDF and JSON
 
-        private static IReadOnlyCollection<DotaSchemaItem> GetLeaguesFromItemSchema(string vdfText)
-        {
-            string json = VDFConverter.ToJson(vdfText);
-
-            return GetLeaguesFromJson(json);
-        }
-
         private static IReadOnlyCollection<DotaSchemaItem> GetLeaguesFromItemSchema(string[] vdfText)
         {
             string json = VDFConverter.ToJson(vdfText);
@@ -212,7 +205,7 @@ namespace SourceSchemaParser
 
         #endregion
         
-        private static JObject ConvertVdfToJObject(string vdf)
+        private static JObject ConvertVdfToJObject(string[] vdf)
         {
             string json = VDFConverter.ToJson(vdf);
             JObject parsedSchema = JObject.Parse(json);
@@ -231,12 +224,6 @@ namespace SourceSchemaParser
             {
                 return "Unknown";
             }
-        }
-
-        private static IDictionary<string, string> GetLanguageTokensFromLanguageSchema(string localizationVdfText)
-        {
-            var json = VDFConverter.ToJson(localizationVdfText);
-            return GetLanguageTokensFromLanguageJson(json);
         }
 
         private static IDictionary<string, string> GetLanguageTokensFromLanguageSchema(string[] localizationVdfText)

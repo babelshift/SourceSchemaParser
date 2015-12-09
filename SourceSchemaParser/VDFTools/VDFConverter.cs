@@ -130,18 +130,18 @@ namespace SourceSchemaParser.VDFTools
             return JsonConvert.SerializeObject(rootCollection);
         }
 
-        /// <summary>
-        /// Given a string containing VDF formatted text, it will be parsed and converted JSON. Currently only supports VDF files in which all tokens are on
-        /// separate lines. That is, '{', '}', '"key"', and '"key" "value"' tokens must be on separate lines until I come up with a better parser for different 
-        /// formatting styles.
-        /// </summary>
-        /// <param name="path">Path to the file that we want to parse.</param>
-        /// <returns></returns>
-        public static string ToJson(string vdfText)
-        {
-            var lines = vdfText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+        ///// <summary>
+        ///// Given a string containing VDF formatted text, it will be parsed and converted JSON. Currently only supports VDF files in which all tokens are on
+        ///// separate lines. That is, '{', '}', '"key"', and '"key" "value"' tokens must be on separate lines until I come up with a better parser for different 
+        ///// formatting styles.
+        ///// </summary>
+        ///// <param name="path">Path to the file that we want to parse.</param>
+        ///// <returns></returns>
+        //public static string ToJson(string vdfText)
+        //{
+        //    var lines = vdfText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
-            return ToJson(lines);
-        }
+        //    return ToJson(lines);
+        //}
     }
 }
