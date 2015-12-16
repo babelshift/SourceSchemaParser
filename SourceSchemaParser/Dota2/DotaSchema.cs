@@ -21,9 +21,9 @@ namespace SourceSchemaParser.Dota2
         [JsonProperty("colors")]
         public IList<DotaSchemaColor> Colors { get; set; }
 
-        [JsonConverter(typeof(DotaSchemaColorJsonConverter))]
+        [JsonConverter(typeof(DotaSchemaPrefabJsonConverter))]
         [JsonProperty("prefabs")]
-        public IList<DotaSchemaColor> Prefabs { get; set; }
+        public IList<DotaSchemaPrefab> Prefabs { get; set; }
 
         [JsonConverter(typeof(DotaSchemaItemsJsonConverter))]
         [JsonProperty("items")]
