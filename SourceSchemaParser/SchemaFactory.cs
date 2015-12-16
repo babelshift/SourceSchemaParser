@@ -249,5 +249,14 @@ namespace SourceSchemaParser
                 throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Public Localization schema file.");
             }
         }
+
+        public static IReadOnlyCollection<DotaSchemaPrefab> GetDotaItemPrefabs(string[] vdf)
+        {
+            string json = VDFConverter.ToJson(vdf);
+
+            var prefabs = JsonConvert.DeserializeObject<IList<DotaSchemaPrefab>>(json, new DotaSchemaPrefabJsonConverter());
+
+            return new ReadOnlyCollection<DotaSchemaPrefab>(prefabs);
+        }
     }
 }

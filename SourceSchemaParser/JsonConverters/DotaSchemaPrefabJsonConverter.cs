@@ -1,0 +1,47 @@
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SourceSchemaParser.Dota2;
+using System;
+using System.Collections.Generic;
+
+namespace SourceSchemaParser.JsonConverters
+{
+    internal class DotaSchemaPrefabJsonConverter : JsonConverter
+    {
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null)
+            {
+                return null;
+            }
+
+            JToken t = JToken.Load(reader);
+
+            JToken item = t["items_game"]["prefabs"];
+
+            List<DotaSchemaPrefab> prefabs = new List<DotaSchemaPrefab>();
+
+            var prefabProperties = item.Children<JProperty>();
+            foreach (var prefabProperty in prefabProperties)
+            {
+                var prefab = prefabProperty.Value.ToObject<DotaSchemaPrefab>();
+                prefab.Type = prefabProperty.Name;
+                prefabs.Add(prefab);
+            }
+
+            return prefabs;
+        }
+
+        public override bool CanWrite { get { return false; } }
+
+        public override bool CanConvert(Type objectType)
+        {
+            return typeof(IList<DotaSchemaPrefab>).IsAssignableFrom(objectType);
+        }
+    }
+}
