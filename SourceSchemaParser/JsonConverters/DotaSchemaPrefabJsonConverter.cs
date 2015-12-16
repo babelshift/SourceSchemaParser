@@ -22,11 +22,9 @@ namespace SourceSchemaParser.JsonConverters
 
             JToken t = JToken.Load(reader);
 
-            JToken item = t["items_game"]["prefabs"];
-
             List<DotaSchemaPrefab> prefabs = new List<DotaSchemaPrefab>();
 
-            var prefabProperties = item.Children<JProperty>();
+            var prefabProperties = t.Children<JProperty>();
             foreach (var prefabProperty in prefabProperties)
             {
                 var prefab = prefabProperty.Value.ToObject<DotaSchemaPrefab>();

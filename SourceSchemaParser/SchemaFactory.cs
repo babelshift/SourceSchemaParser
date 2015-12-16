@@ -254,7 +254,11 @@ namespace SourceSchemaParser
         {
             string json = VDFConverter.ToJson(vdf);
 
-            var prefabs = JsonConvert.DeserializeObject<IList<DotaSchemaPrefab>>(json, new DotaSchemaPrefabJsonConverter());
+            JObject itemSchema = JObject.Parse(json);
+
+            JToken item = itemSchema["items_game"]["prefabs"];
+
+            var prefabs = JsonConvert.DeserializeObject<IList<DotaSchemaPrefab>>(item.ToString(), new DotaSchemaPrefabJsonConverter());
 
             return new ReadOnlyCollection<DotaSchemaPrefab>(prefabs);
         }
