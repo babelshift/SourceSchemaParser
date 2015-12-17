@@ -24,7 +24,7 @@ namespace SourceSchemaParser.JsonConverters
 
             JValue v = (JValue)JToken.Load(reader);
             string price = v.Value.ToString();
-            if (price != "0" && price.Length >= 3)
+            if (price != "0" && price.Length >= 2)
             {
                 price = price.Insert(price.Length - 2, ".");
             }
