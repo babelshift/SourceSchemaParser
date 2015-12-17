@@ -18,6 +18,9 @@ namespace SourceSchemaParser.Dota2
         [JsonProperty("item_rarity")]
         public string ItemRarity { get; set; }
 
+        [JsonProperty("item_quality")]
+        public string ItemQuality { get; set; }
+
         [JsonProperty("item_slot")]
         public string ItemSlot { get; set; }
 
