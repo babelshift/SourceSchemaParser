@@ -27,7 +27,7 @@ namespace SourceSchemaParser
         public string Prefab { get; set; }
 
         [JsonProperty("creation_date")]
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
         [JsonProperty("expiration_date")]
         public DateTime? ExpirationDate { get; set; }

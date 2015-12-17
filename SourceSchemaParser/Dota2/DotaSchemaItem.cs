@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SourceSchemaParser.JsonConverters;
+using System.Collections.Generic;
 
 namespace SourceSchemaParser.Dota2
 {
@@ -16,8 +17,31 @@ namespace SourceSchemaParser.Dota2
         [JsonProperty("item_rarity")]
         public string ItemRarity { get; set; }
 
-        //[JsonConverter(typeof(StringToBoolJsonConverter))]
-        //[JsonProperty("used_by_heroes")]
-        //public bool UsedByHeroes { get; set; }
+        [JsonProperty("item_slot")]
+        public string ItemSlot { get; set; }
+
+        [JsonProperty("price_info")]
+        public DotaSchemaItemPriceInfo PriceInfo { get; set; }
+
+        [JsonConverter(typeof(DotaSchemaUsedByHeroesJsonConverter))]
+        [JsonProperty("used_by_heroes")]
+        public IList<string> UsedByHeroes { get; set; }
+    }
+
+    public class DotaSchemaItemPriceInfo
+    {
+        [JsonProperty("bucket")]
+        public string Bucket { get; set; }
+        [JsonProperty("class")]
+        public string Class { get; set; }
+        [JsonProperty("category_tags")]
+        public string CategoryTags { get; set; }
+        [JsonProperty("date")]
+        public string Date { get; set; }
+        [JsonProperty("price")]
+        public double Price { get; set; }
+        [JsonConverter(typeof(StringToBoolJsonConverter))]
+        [JsonProperty("is_pack_item")]
+        public bool IsPackItem { get; set; }
     }
 }
