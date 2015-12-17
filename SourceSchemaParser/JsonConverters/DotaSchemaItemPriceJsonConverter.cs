@@ -28,8 +28,8 @@ namespace SourceSchemaParser.JsonConverters
             {
                 price = price.Insert(price.Length - 2, ".");
             }
-            double result = 0d;
-            bool success = double.TryParse(price, out result);
+            decimal result = 0m;
+            bool success = decimal.TryParse(price, out result);
             return result;
         }
 

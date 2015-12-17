@@ -41,7 +41,7 @@ namespace SourceSchemaParser.Dota2
         public DateTime? Date { get; set; }
         [JsonConverter(typeof(DotaSchemaItemPriceJsonConverter))]
         [JsonProperty("price")]
-        public double? Price { get; set; }
+        public decimal? Price { get; set; }
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("is_pack_item")]
         public bool? IsPackItem { get; set; }
