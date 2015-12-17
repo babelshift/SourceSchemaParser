@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SourceSchemaParser.JsonConverters;
+using System;
 using System.Collections.Generic;
 
 namespace SourceSchemaParser.Dota2
@@ -37,9 +38,10 @@ namespace SourceSchemaParser.Dota2
         [JsonProperty("category_tags")]
         public string CategoryTags { get; set; }
         [JsonProperty("date")]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
+        [JsonConverter(typeof(DotaSchemaItemPriceJsonConverter))]
         [JsonProperty("price")]
-        public double Price { get; set; }
+        public double? Price { get; set; }
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("is_pack_item")]
         public bool IsPackItem { get; set; }

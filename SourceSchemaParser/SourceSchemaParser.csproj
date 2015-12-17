@@ -78,6 +78,7 @@
     <Compile Include="JsonConverters\SchemaItemToDotaItemAbilityJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToDotaAbilityJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToDotaHeroJsonConverter.cs" />
+    <Compile Include="JsonConverters\DotaSchemaItemPriceJsonConverter.cs" />
     <Compile Include="JsonConverters\StringToNullableBoolJsonConverter.cs" />
     <Compile Include="JsonConverters\StringToBoolJsonConverter.cs" />
     <Compile Include="VDFTools\VDFConverter.cs" />
