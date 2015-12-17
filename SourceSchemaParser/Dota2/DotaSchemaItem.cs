@@ -38,12 +38,12 @@ namespace SourceSchemaParser.Dota2
         [JsonProperty("category_tags")]
         public string CategoryTags { get; set; }
         [JsonProperty("date")]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
         [JsonConverter(typeof(DotaSchemaItemPriceJsonConverter))]
         [JsonProperty("price")]
         public double? Price { get; set; }
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("is_pack_item")]
-        public bool IsPackItem { get; set; }
+        public bool? IsPackItem { get; set; }
     }
 }
