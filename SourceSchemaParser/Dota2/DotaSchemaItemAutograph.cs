@@ -9,6 +9,7 @@ namespace SourceSchemaParser.Dota2
 {
     public class DotaSchemaItemAutograph
     {
+        public string DefIndex { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("autograph")]

@@ -28,6 +28,7 @@ namespace SourceSchemaParser.JsonConverters
             foreach (var autographProperty in autographProperties)
             {
                 var autograph = autographProperty.Value.ToObject<DotaSchemaItemAutograph>();
+                autograph.DefIndex = autographProperty.Name;
                 items.Add(autograph);
             }
 
