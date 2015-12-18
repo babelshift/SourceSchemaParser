@@ -52,6 +52,12 @@
     <Compile Include="Dota2\DotaAbilitySpecialSchemaItem.cs" />
     <Compile Include="Dota2\DotaSchema.cs" />
     <Compile Include="Dota2\DotaSchemaContainer.cs" />
+    <Compile Include="Dota2\DotaSchemaItemAutograph.cs" />
+    <Compile Include="Dota2\DotaSchemaItemSet.cs" />
+    <Compile Include="JsonConverters\DotaSchemaItemSetItemsJsonConverter.cs" />
+    <Compile Include="JsonConverters\DotaSchemaItemSetJsonConverter.cs" />
+    <Compile Include="JsonConverters\DotaSchemaItemBundleJsonConverter.cs" />
+    <Compile Include="JsonConverters\DotaSchemaItemAutographsJsonConverter.cs" />
     <Compile Include="JsonConverters\DotaSchemaUsedByHeroesJsonConverter.cs" />
     <Compile Include="JsonConverters\DotaSchemaPrefabJsonConverter.cs" />
     <Compile Include="JsonConverters\DotaSchemaItemsJsonConverter.cs" />

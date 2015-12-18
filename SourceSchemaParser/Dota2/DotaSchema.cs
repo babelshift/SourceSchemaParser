@@ -28,6 +28,14 @@ namespace SourceSchemaParser.Dota2
         [JsonConverter(typeof(DotaSchemaItemsJsonConverter))]
         [JsonProperty("items")]
         public IList<DotaSchemaItem> Items { get; set; }
+
+        [JsonConverter(typeof(DotaSchemaItemSetJsonConverter))]
+        [JsonProperty("item_sets")]
+        public IList<DotaSchemaItemSet> ItemSets { get; set; }
+
+        [JsonConverter(typeof(DotaSchemaItemAutographsJsonConverter))]
+        [JsonProperty("items_autographs")]
+        public IList<DotaSchemaItemAutograph> ItemAutographs { get; set; }
     }
 
     public class DotaSchemaPrefabCapability

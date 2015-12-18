@@ -30,6 +30,10 @@ namespace SourceSchemaParser.Dota2
         [JsonConverter(typeof(DotaSchemaUsedByHeroesJsonConverter))]
         [JsonProperty("used_by_heroes")]
         public IList<string> UsedByHeroes { get; set; }
+
+        [JsonConverter(typeof(DotaSchemaItemBundleJsonConverter))]
+        [JsonProperty("bundle")]
+        public IList<string> BundledItems { get; set; }
     }
 
     public class DotaSchemaItemPriceInfo
