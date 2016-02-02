@@ -234,9 +234,8 @@ namespace SourceSchemaParser
         {
             JObject languageSchema = JObject.Parse(json);
 
-            JToken langItem = null;
             JToken item = null;
-            if (languageSchema.TryGetValue("dota", out langItem))
+            if (languageSchema.TryGetValue("dota", out item))
             {
                 var tokens = JsonConvert.DeserializeObject<IDictionary<string, string>>(item.ToString(), new SchemaLanguageTokensJsonConverter());
 
