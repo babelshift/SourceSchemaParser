@@ -40,6 +40,18 @@ namespace SourceSchemaParser
             }
         }
         
+        public static IReadOnlyDictionary<string, string> GetDotaPanoramaLocalizationKeys(string[] vdf)
+        {
+            if (vdf == null)
+            {
+                throw new ArgumentNullException("vdf");
+            }
+
+            var keys = GetLanguageTokensFromPanoramaSchema(vdf);
+
+            return new ReadOnlyDictionary<string, string>(keys);
+        }
+
         public static IReadOnlyDictionary<string, string> GetDotaPublicLocalizationKeys(string[] vdf)
         {
             if(vdf == null)
@@ -210,6 +222,30 @@ namespace SourceSchemaParser
             string json = VDFConverter.ToJson(vdf);
             JObject parsedSchema = JObject.Parse(json);
             return parsedSchema;
+        }
+
+        private static IDictionary<string, string> GetLanguageTokensFromPanoramaSchema(string[] localizationVdfText)
+        {
+            var json = VDFConverter.ToJson(localizationVdfText);
+            return GetLanguageTokensFromPanoramaJson(json);
+        }
+
+        private static IDictionary<string, string> GetLanguageTokensFromPanoramaJson(string json)
+        {
+            JObject languageSchema = JObject.Parse(json);
+
+            JToken langItem = null;
+            JToken item = null;
+            if (languageSchema.TryGetValue("dota", out langItem))
+            {
+                var tokens = JsonConvert.DeserializeObject<IDictionary<string, string>>(item.ToString(), new SchemaLanguageTokensJsonConverter());
+
+                return tokens;
+            }
+            else
+            {
+                throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Panorama Localization schema file.");
+            }
         }
 
         private static string GetLanguageToken(string key, IDictionary<string, string> tokens)
