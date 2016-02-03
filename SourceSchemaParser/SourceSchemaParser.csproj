@@ -54,6 +54,7 @@
     <Compile Include="Dota2\DotaSchemaContainer.cs" />
     <Compile Include="Dota2\DotaSchemaItemAutograph.cs" />
     <Compile Include="Dota2\DotaSchemaItemSet.cs" />
+    <Compile Include="JsonConverters\DotaSchemaItemCreationDateJsonConverter.cs" />
     <Compile Include="JsonConverters\DotaSchemaItemSetItemsJsonConverter.cs" />
     <Compile Include="JsonConverters\DotaSchemaItemSetJsonConverter.cs" />
     <Compile Include="JsonConverters\DotaSchemaItemBundleJsonConverter.cs" />

@@ -26,6 +26,7 @@ namespace SourceSchemaParser
         [JsonProperty("prefab")]
         public string Prefab { get; set; }
 
+        [JsonConverter(typeof(DotaSchemaItemCreationDateJsonConverter))]
         [JsonProperty("creation_date")]
         public DateTime? CreationDate { get; set; }
 
