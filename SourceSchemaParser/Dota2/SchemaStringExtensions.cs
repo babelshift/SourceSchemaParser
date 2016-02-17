@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public static class SchemaStringExtensions
+    internal static class SchemaStringExtensions
     {
         public static string ToSlashSeparatedString(this string value)
         {

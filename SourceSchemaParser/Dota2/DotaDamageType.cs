@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public sealed class DotaDamageType : DotaEnumType
+    internal sealed class DotaDamageType : DotaEnumType
     {
         public static readonly DotaDamageType UNKNOWN = new DotaDamageType("DAMAGE_TYPE_UNKNOWN", "Unknown", "This damage type is unknown.");
         public static readonly DotaDamageType PURE = new DotaDamageType("DAMAGE_TYPE_PURE", "Pure", "The damage dealt is not reduced by any resistance.");

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public class DotaItemBuildSchemaItem
+    internal class DotaItemBuildSchemaItem
     {
         public string Author { get; set; }
         public string Hero { get; set; }

@@ -3,7 +3,7 @@ using SourceSchemaParser.JsonConverters;
 
 namespace SourceSchemaParser.Dota2
 {
-    public class DotaSchemaItemToolUsage : SchemaItemToolUsage
+    internal class DotaSchemaItemToolUsage
     {
         [JsonProperty("league_id")]
         public int LeagueId { get; set; }

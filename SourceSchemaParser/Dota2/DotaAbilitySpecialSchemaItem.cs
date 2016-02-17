@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public class DotaAbilitySpecialSchemaItem
+    internal class DotaAbilitySpecialSchemaItem
     {
         public string Name { get; set; }
         public string Value { get; set; }

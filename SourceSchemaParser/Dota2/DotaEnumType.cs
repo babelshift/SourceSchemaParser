@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public abstract class DotaEnumType
+    internal abstract class DotaEnumType
     {
         protected readonly string key;
         protected readonly string displayName;

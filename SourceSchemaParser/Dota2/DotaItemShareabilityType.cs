@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public sealed class DotaItemShareabilityType : DotaEnumType
+    internal sealed class DotaItemShareabilityType : DotaEnumType
     {
         public static readonly DotaItemShareabilityType UNKNOWN = new DotaItemShareabilityType("ITEM_UNKNOWN_SHAREABLE", "Unknown", "The shareability of this item is unknown.");
         public static readonly DotaItemShareabilityType PARTIALLY_SHAREABLE = new DotaItemShareabilityType("ITEM_PARTIALLY_SHAREABLE", "Partially", "This item is partially shareable.");

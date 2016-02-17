@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public class DotaAbilitySchemaItem
+    internal class DotaAbilitySchemaItem
     {
         public DotaAbilitySchemaItem()
         {

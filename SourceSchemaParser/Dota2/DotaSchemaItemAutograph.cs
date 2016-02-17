@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public class DotaSchemaItemAutograph
+    internal class DotaSchemaItemAutograph
     {
         public string DefIndex { get; set; }
         [JsonProperty("name")]

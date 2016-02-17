@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public sealed class DotaUnitTargetType : DotaEnumType
+    internal sealed class DotaUnitTargetType : DotaEnumType
     {
         public static readonly DotaUnitTargetType UNKNOWN = new DotaUnitTargetType("DOTA_UNIT_TARGET_UNKNOWN", "Unknown", "This unit target type is unknown.");
         public static readonly DotaUnitTargetType HERO = new DotaUnitTargetType("DOTA_UNIT_TARGET_HERO", "Hero", "The target of the ability can be a hero.");

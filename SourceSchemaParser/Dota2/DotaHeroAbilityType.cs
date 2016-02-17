@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public sealed class DotaHeroAbilityType : DotaEnumType
+    internal sealed class DotaHeroAbilityType : DotaEnumType
     {
         public static readonly DotaHeroAbilityType UNKNOWN = new DotaHeroAbilityType("DOTA_ABILITY_TYPE_UNKNOWN", "Unknown", "This is a an unknown ability type.");
         public static readonly DotaHeroAbilityType BASIC = new DotaHeroAbilityType("DOTA_ABILITY_TYPE_BASIC", "Basic", "This is a basic ability learnable at any level.");

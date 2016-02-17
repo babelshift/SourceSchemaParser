@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public sealed class DotaItemDeclarationType : DotaEnumType
+    internal sealed class DotaItemDeclarationType : DotaEnumType
     {
         public static readonly DotaItemDeclarationType UNKNOWN = new DotaItemDeclarationType("DECLARE_PURCHASES_UNKNOWN", "Unknown", "The declaration of this item is unknown.");
         public static readonly DotaItemDeclarationType PURCHASES_TO_TEAMMATES = new DotaItemDeclarationType("DECLARE_PURCHASES_TO_TEAMMATES", "To Teammates", "Declare this item to teammates when purchased.");

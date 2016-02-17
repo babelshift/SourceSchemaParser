@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public class DotaItemBuildGroupSchemaItem
+    internal class DotaItemBuildGroupSchemaItem
     {
         public string Name { get; set; }
         public IList<string> Items { get; set; }

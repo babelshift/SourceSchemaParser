@@ -15,13 +15,13 @@ namespace SourceSchemaParser
         public string ImageInventoryPath { get; set; }
 
         [JsonProperty("item_name")]
-        public string NameLocalized { get; set; }
+        public string ItemName { get; set; }
 
         [JsonProperty("item_description")]
-        public string DescriptionLocalized { get; set; }
+        public string ItemDescription { get; set; }
 
         [JsonProperty("item_type_name")]
-        public string TypeName { get; set; }
+        public string ItemTypeName { get; set; }
 
         [JsonProperty("prefab")]
         public string Prefab { get; set; }

@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public class DotaSchemaItemSet
+    internal class DotaSchemaItemSet
     {
         public string RawName { get; set; }
         [JsonProperty("name")]
-        public string LocalizedName { get; set; }
+        public string Name { get; set; }
         [JsonProperty("store_bundle")]
         public string StoreBundleName { get; set; }
         [JsonConverter(typeof(DotaSchemaItemSetItemsJsonConverter))]
         [JsonProperty("items")]
-        public IList<String> Items { get; set; }
+        public IList<string> Items { get; set; }
     }
 }

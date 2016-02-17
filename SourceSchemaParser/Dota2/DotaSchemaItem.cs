@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SourceSchemaParser.Dota2
 {
-    public class DotaSchemaItem : SchemaItem
+    internal class DotaSchemaItem : SchemaItem
     {
         public DotaSchemaItemTool Tool { get; set; }
 

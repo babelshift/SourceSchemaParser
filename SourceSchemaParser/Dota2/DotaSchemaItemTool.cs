@@ -1,6 +1,6 @@
 ﻿namespace SourceSchemaParser.Dota2
 {
-    public class DotaSchemaItemTool : SchemaItemTool
+    internal class DotaSchemaItemTool
     {
         public DotaSchemaItemToolUsage Usage { get; set; }
     }

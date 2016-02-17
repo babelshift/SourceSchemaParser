@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public sealed class DotaAttackType : DotaEnumType
+    internal sealed class DotaAttackType : DotaEnumType
     {
         public static readonly DotaAttackType UNKNOWN = new DotaAttackType("DOTA_UNIT_CAP_UNKNOWN", "Unknown", "This attack type is unknown.");
         public static readonly DotaAttackType RANGED = new DotaAttackType("DOTA_UNIT_CAP_RANGED_ATTACK", "Ranged", "The attack can be performed from a distance.");

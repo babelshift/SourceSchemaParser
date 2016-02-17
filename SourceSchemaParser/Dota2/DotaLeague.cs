@@ -2,7 +2,7 @@
 
 namespace SourceSchemaParser.Dota2
 {
-    public class DotaLeague
+    internal class DotaLeague
     {
         public string ItemDef { get; private set; }
         public string Name { get; private set; }
@@ -27,9 +27,9 @@ namespace SourceSchemaParser.Dota2
             Name = schema.Name;
             ImageInventoryPath = schema.ImageInventoryPath;
             ImageBannerPath = schema.ImageBannerPath;
-            NameLocalized = schema.NameLocalized;
-            DescriptionLocalized = schema.DescriptionLocalized;
-            TypeName = schema.TypeName;
+            NameLocalized = schema.ItemName;
+            DescriptionLocalized = schema.ItemDescription;
+            TypeName = schema.ItemTypeName;
             TournamentUrl = schema.TournamentUrl;
             if (schema.Tool != null && schema.Tool.Usage != null)
             {

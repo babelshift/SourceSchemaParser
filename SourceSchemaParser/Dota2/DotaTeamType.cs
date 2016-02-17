@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public sealed class DotaTeamType : DotaEnumType
+    internal sealed class DotaTeamType : DotaEnumType
     {
         public static readonly DotaTeamType UNKNOWN = new DotaTeamType("Unknown", "Unknown", "This team is unknown.");
         public static readonly DotaTeamType GOOD = new DotaTeamType("Good", "Radiant", "The 'good' team.");

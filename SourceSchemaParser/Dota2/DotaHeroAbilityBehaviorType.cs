@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public sealed class DotaHeroAbilityBehaviorType : DotaEnumType
+    internal sealed class DotaHeroAbilityBehaviorType : DotaEnumType
     {
         public static readonly DotaHeroAbilityBehaviorType UNKNOWN = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_UNKNOWN", "Unknown", "This behavior could not be found.");
         public static readonly DotaHeroAbilityBehaviorType HIDDEN = new DotaHeroAbilityBehaviorType("DOTA_ABILITY_BEHAVIOR_HIDDEN", "Hidden", "This ability can be owned by a unit but can't be casted and wont show up on the HUD.");

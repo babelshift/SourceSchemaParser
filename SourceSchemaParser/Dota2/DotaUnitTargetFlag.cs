@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public sealed class DotaUnitTargetFlag : DotaEnumType
+    internal sealed class DotaUnitTargetFlag : DotaEnumType
     {
         public static readonly DotaUnitTargetFlag UNKNOWN = new DotaUnitTargetFlag("DOTA_UNIT_TARGET_FLAG_UNKNOWN", "Unknown", "This flag is an unknown type.");
         public static readonly DotaUnitTargetFlag MAGIC_IMMUNE_ENEMIES = new DotaUnitTargetFlag("DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES", "Affects Magic Immune Enemies", "This ability affects magic immune enemies.");

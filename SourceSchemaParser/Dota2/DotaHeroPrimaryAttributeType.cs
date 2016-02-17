@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
-    public sealed class DotaHeroPrimaryAttributeType : DotaEnumType
+    internal sealed class DotaHeroPrimaryAttributeType : DotaEnumType
     {
         public static readonly DotaHeroPrimaryAttributeType STRENGTH = new DotaHeroPrimaryAttributeType("DOTA_ATTRIBUTE_STRENGTH", "Strength", "Strength health and health regeneration.");
         public static readonly DotaHeroPrimaryAttributeType AGILITY = new DotaHeroPrimaryAttributeType("DOTA_ATTRIBUTE_AGILITY", "Agility", "Agility increases armor.");

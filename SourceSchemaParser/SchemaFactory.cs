@@ -7,19 +7,26 @@ using System.IO;
 using SourceSchemaParser.JsonConverters;
 using SourceSchemaParser.VDFTools;
 using SourceSchemaParser.Dota2;
+using Steam.Models.DOTA2;
 
 namespace SourceSchemaParser
 {
     public static class SchemaFactory
     {
-        public static DotaSchema GetDotaSchema(string[] vdf)
+        static SchemaFactory()
         {
-            string json = VDFConverter.ToJson(vdf);
-            var schema = JsonConvert.DeserializeObject<DotaSchemaContainer>(json);
-            return schema.Schema;
+            AutoMapperConfiguration.Initialize();
         }
 
-        public static IReadOnlyCollection<DotaItemAbilitySchemaItem> GetDotaItemAbilities(string[] vdf)
+        public static SchemaModel GetDotaSchema(string[] vdf)
+        {
+            string json = VDFConverter.ToJson(vdf);
+            var schemaContainer = JsonConvert.DeserializeObject<DotaSchemaContainer>(json);
+            var schemaModel = AutoMapperConfiguration.Mapper.Map<DotaSchema, SchemaModel>(schemaContainer.Schema);
+            return schemaModel;
+        }
+
+        public static IReadOnlyCollection<ItemAbilitySchemaItemModel> GetDotaItemAbilities(string[] vdf)
         {
             if (vdf == null)
             {
@@ -32,7 +39,8 @@ namespace SourceSchemaParser
             if (schema.TryGetValue("DOTAAbilities", out item))
             {
                 var itemAbilities = JsonConvert.DeserializeObject<IList<DotaItemAbilitySchemaItem>>(item.ToString(), new SchemaItemToDotaItemAbilityJsonConverter());
-                return new ReadOnlyCollection<DotaItemAbilitySchemaItem>(itemAbilities);
+                var itemAbilityModels = AutoMapperConfiguration.Mapper.Map<IList<DotaItemAbilitySchemaItem>, IList<ItemAbilitySchemaItemModel>>(itemAbilities);
+                return new ReadOnlyCollection<ItemAbilitySchemaItemModel>(itemAbilityModels);
             }
             else
             {
@@ -66,7 +74,7 @@ namespace SourceSchemaParser
 
         #region Dota Heroes
 
-        public static IReadOnlyCollection<DotaAbilitySchemaItem> GetDotaHeroAbilities(string[] vdf)
+        public static IReadOnlyCollection<AbilitySchemaItemModel> GetDotaHeroAbilities(string[] vdf)
         {
             if (vdf == null)
             {
@@ -79,7 +87,8 @@ namespace SourceSchemaParser
             if (schema.TryGetValue("DOTAAbilities", out item))
             {
                 var abilities = JsonConvert.DeserializeObject<IList<DotaAbilitySchemaItem>>(item.ToString(), new SchemaItemToDotaAbilityJsonConverter());
-                return new ReadOnlyCollection<DotaAbilitySchemaItem>(abilities);
+                var abilityModels = AutoMapperConfiguration.Mapper.Map<IList<DotaAbilitySchemaItem>, IList<AbilitySchemaItemModel>>(abilities);
+                return new ReadOnlyCollection<AbilitySchemaItemModel>(abilityModels);
             }
             else
             {
@@ -87,11 +96,16 @@ namespace SourceSchemaParser
             }
         }
 
-        public static IReadOnlyCollection<DotaHeroSchemaItem> GetDotaHeroes(string[] vdf)
+        public static IReadOnlyCollection<HeroSchemaModel> GetDotaHeroes(string[] vdf)
         {
             if (vdf == null)
             {
                 throw new ArgumentNullException("vdf");
+            }
+
+            if(vdf.Length == 0)
+            {
+                return null;
             }
 
             JObject schema = ConvertVdfToJObject(vdf);
@@ -100,7 +114,8 @@ namespace SourceSchemaParser
             if (schema.TryGetValue("DOTAHeroes", out item))
             {
                 var heroes = JsonConvert.DeserializeObject<IList<DotaHeroSchemaItem>>(item.ToString(), new SchemaItemToDotaHeroJsonConverter());
-                return new ReadOnlyCollection<DotaHeroSchemaItem>(heroes);
+                var heroModels = AutoMapperConfiguration.Mapper.Map<IList<DotaHeroSchemaItem>, IList<HeroSchemaModel>>(heroes);
+                return new ReadOnlyCollection<HeroSchemaModel>(heroModels);
             }
             else
             {
@@ -108,7 +123,7 @@ namespace SourceSchemaParser
             }
         }
 
-        public static DotaItemBuildSchemaItem GetDotaItemBuild(string[] vdf)
+        public static ItemBuildSchemaItemModel GetDotaItemBuild(string[] vdf)
         {
             if (vdf == null)
             {
@@ -121,7 +136,8 @@ namespace SourceSchemaParser
             if (schema.TryGetValue("itembuilds", out item))
             {
                 var itemBuild = item.ToObject<DotaItemBuildSchemaItem>();
-                return itemBuild;
+                var itemBuildModel = AutoMapperConfiguration.Mapper.Map<DotaItemBuildSchemaItem, ItemBuildSchemaItemModel>(itemBuild);
+                return itemBuildModel;
             }
             else
             {
@@ -133,21 +149,27 @@ namespace SourceSchemaParser
 
         #region Dota Leagues
 
-        public static IReadOnlyCollection<DotaLeague> GetDotaLeaguesFromText(string[] itemSchemaVdfText, string[] localizationVdfText)
+        public static IReadOnlyCollection<LeagueModel> GetDotaLeaguesFromText(string[] itemSchemaVdfText, string[] localizationVdfText)
         {
             var leaguesFromSchema = GetLeaguesFromItemSchema(itemSchemaVdfText);
 
-            return GetDotaLeagues(leaguesFromSchema, localizationVdfText);
+            var leagues = GetDotaLeagues(leaguesFromSchema, localizationVdfText);
+            var leagueModels = AutoMapperConfiguration.Mapper.Map<IReadOnlyCollection<DotaLeague>, IReadOnlyCollection<LeagueModel>>(leagues);
+
+            return leagueModels;
         }
 
-        public static IReadOnlyCollection<DotaLeague> GetDotaLeaguesFromFile(string itemSchemaFilePath, string localizationFilePath)
+        public static IReadOnlyCollection<LeagueModel> GetDotaLeaguesFromFile(string itemSchemaFilePath, string localizationFilePath)
         {
             var itemSchemaVdfText = File.ReadAllLines(itemSchemaFilePath);
             var leaguesFromSchema = GetLeaguesFromItemSchema(itemSchemaVdfText);
 
             var localizationVdfText = File.ReadAllLines(localizationFilePath);
 
-            return GetDotaLeagues(leaguesFromSchema, localizationVdfText);
+            var leagues = GetDotaLeagues(leaguesFromSchema, localizationVdfText);
+            var leagueModels = AutoMapperConfiguration.Mapper.Map<IReadOnlyCollection<DotaLeague>, IReadOnlyCollection<LeagueModel>>(leagues);
+
+            return leagueModels;
         }
 
         #region Merge Parsed Leagues and Language Tokens
@@ -166,15 +188,15 @@ namespace SourceSchemaParser
         {
             foreach (var league in leagues)
             {
-                league.NameLocalized = GetLanguageToken(league.NameLocalized.Remove(0, 1), tokens);
-                league.DescriptionLocalized = GetLanguageToken(league.DescriptionLocalized.Remove(0, 1), tokens);
-                if (!String.IsNullOrEmpty(league.TypeName))
+                league.ItemName = GetLanguageToken(league.ItemName.Remove(0, 1), tokens);
+                league.ItemDescription = GetLanguageToken(league.ItemDescription.Remove(0, 1), tokens);
+                if (!String.IsNullOrEmpty(league.ItemTypeName))
                 {
-                    league.TypeName = GetLanguageToken(league.TypeName.Remove(0, 1), tokens);
+                    league.ItemTypeName = GetLanguageToken(league.ItemTypeName.Remove(0, 1), tokens);
                 }
                 else
                 {
-                    league.TypeName = "Unknown";
+                    league.ItemTypeName = "Unknown";
                 }
             }
         }
@@ -285,7 +307,7 @@ namespace SourceSchemaParser
             }
         }
 
-        public static IReadOnlyCollection<DotaSchemaPrefab> GetDotaItemPrefabs(string[] vdf)
+        public static IReadOnlyCollection<SchemaPrefabModel> GetDotaItemPrefabs(string[] vdf)
         {
             string json = VDFConverter.ToJson(vdf);
 
@@ -294,8 +316,9 @@ namespace SourceSchemaParser
             JToken item = itemSchema["items_game"]["prefabs"];
 
             var prefabs = JsonConvert.DeserializeObject<IList<DotaSchemaPrefab>>(item.ToString(), new DotaSchemaPrefabJsonConverter());
+            var prefabModels = AutoMapperConfiguration.Mapper.Map<IList<DotaSchemaPrefab>, IList<SchemaPrefabModel>>(prefabs);
 
-            return new ReadOnlyCollection<DotaSchemaPrefab>(prefabs);
+            return new ReadOnlyCollection<SchemaPrefabModel>(prefabModels);
         }
     }
 }

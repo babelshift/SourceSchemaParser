@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SourceSchemaParser.Dota2
 {
-    public class DotaSchema
+    internal class DotaSchema
     {
         [JsonProperty("game_info")]
         public DotaSchemaGameInfo GameInfo { get; set; }
