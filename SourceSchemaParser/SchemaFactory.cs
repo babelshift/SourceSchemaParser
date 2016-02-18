@@ -230,7 +230,25 @@ namespace SourceSchemaParser
             List<DotaLeague> dotaLeagues = new List<DotaLeague>();
             foreach (var league in leagues)
             {
-                DotaLeague dotaLeague = new DotaLeague(league);
+                DotaLeague dotaLeague = new DotaLeague()
+                {
+                    ItemDef = league.DefIndex,
+                    Name = league.Name,
+                    ImageInventoryPath = league.ImageInventoryPath,
+                    ImageBannerPath = league.ImageBannerPath,
+                    NameLocalized = league.ItemName,
+                    DescriptionLocalized = league.ItemDescription,
+                    TypeName = league.ItemTypeName,
+                    TournamentUrl = league.TournamentUrl
+                };
+
+                if (league.Tool != null && league.Tool.Usage != null)
+                {
+                    dotaLeague.Tier = league.Tool.Usage.Tier;
+                    dotaLeague.Location = league.Tool.Usage.Location;
+                    dotaLeague.LeagueId = league.Tool.Usage.LeagueId;
+                }
+
                 dotaLeagues.Add(dotaLeague);
             }
 

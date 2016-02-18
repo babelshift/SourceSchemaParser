@@ -47,6 +47,8 @@ namespace SourceSchemaParser
 
                     x.CreateMap<DotaItemBuildSchemaItem, ItemBuildSchemaItemModel>();
                     x.CreateMap<DotaItemBuildGroupSchemaItem, ItemBuildGroupSchemaItemModel>();
+
+                    x.CreateMap<DotaLeague, LeagueModel>();
                 });
             }
 
