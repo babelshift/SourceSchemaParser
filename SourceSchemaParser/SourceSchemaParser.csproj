@@ -75,7 +75,6 @@
     <Compile Include="Dota2\DotaItemBuildSchemaItem.cs" />
     <Compile Include="Dota2\DotaItemBuildGroupSchemaItem.cs" />
     <Compile Include="Dota2\DotaHeroSchemaItem.cs" />
-    <Compile Include="Dota2\SchemaStringExtensions.cs" />
     <Compile Include="JsonConverters\DotaAbilitySpecialSchemaItemJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToDotaItemAbilityJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToDotaAbilityJsonConverter.cs" />
