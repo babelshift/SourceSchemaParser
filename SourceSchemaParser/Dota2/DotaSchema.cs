@@ -43,27 +43,35 @@ namespace SourceSchemaParser.Dota2
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("nameable")]
         public bool Nameable { get; set; }
+
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("can_have_sockets")]
         public bool CanHaveSockets { get; set; }
+
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("gems_can_be_extracted")]
         public bool GemsCanBeExtracted { get; set; }
+
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("can_gift_wrap")]
         public bool CanGiftWrap { get; set; }
+
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("usable_gc")]
         public bool UsableGC { get; set; }
+
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("usable_out_of_game")]
         public bool UsableOutOfGame { get; set; }
+
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("decodable")]
         public bool Decodable { get; set; }
+
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("usable")]
         public bool Usable { get; set; }
+
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("is_gem")]
         public bool IsGem { get; set; }
@@ -72,26 +80,37 @@ namespace SourceSchemaParser.Dota2
     public class DotaSchemaPrefab
     {
         public string Type { get; set; }
+
         [JsonProperty("item_type_name")]
         public string TypeName { get; set; }
+
         [JsonProperty("item_class")]
         public string Class { get; set; }
+
         [JsonProperty("item_name")]
         public string Name { get; set; }
+
         [JsonProperty("item_slot")]
         public string Slot { get; set; }
+
         [JsonProperty("item_quality")]
         public string Quality { get; set; }
+
         [JsonProperty("item_rarity")]
         public string Rarity { get; set; }
+
         [JsonProperty("min_ilevel")]
         public string MinItemLevel { get; set; }
+
         [JsonProperty("max_ilevel")]
         public string MaxItemLevel { get; set; }
+
         [JsonProperty("image_inventory_size_w")]
         public string ImageInventorySizeWidth { get; set; }
+
         [JsonProperty("image_inventory_size_h")]
         public string ImageInventorySizeHeight { get; set; }
+
         [JsonProperty("capabilities")]
         public DotaSchemaPrefabCapability Capabilities { get; set; }
     }

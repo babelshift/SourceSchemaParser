@@ -7,7 +7,7 @@ namespace SourceSchemaParser.Dota2
         public string ItemDef { get; set; }
         public string Name { get; set; }
         public string ImageInventoryPath { get; set; }
-        public string ImageBannerPath { get;set; }
+        public string ImageBannerPath { get; set; }
         public string NameLocalized { get; set; }
         public string DescriptionLocalized { get; set; }
         public string TypeName { get; set; }
@@ -15,7 +15,7 @@ namespace SourceSchemaParser.Dota2
         public int LeagueId { get; set; }
         public string Tier { get; set; }
         public string Location { get; set; }
-        
+
         public override string ToString()
         {
             string result = String.Format("Name: {0}", NameLocalized);

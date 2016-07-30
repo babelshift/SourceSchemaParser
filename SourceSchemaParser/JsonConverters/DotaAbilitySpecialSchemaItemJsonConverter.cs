@@ -3,9 +3,6 @@ using Newtonsoft.Json.Linq;
 using SourceSchemaParser.Dota2;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SourceSchemaParser.JsonConverters
 {
@@ -37,16 +34,16 @@ namespace SourceSchemaParser.JsonConverters
                 {
                     continue;
                 }
-                
+
                 string currentVarType = String.Empty;
 
                 // we need to go through all the actual values of the special properties
                 var abilitySpecialIndividualProperties = abilitySpecialProperty.Value.Children<JProperty>();
 
-                foreach(var abilitySpecialIndividualProperty in abilitySpecialIndividualProperties)
+                foreach (var abilitySpecialIndividualProperty in abilitySpecialIndividualProperties)
                 {
                     // record the var_type of this special
-                    if(abilitySpecialIndividualProperty.Name == "var_type")
+                    if (abilitySpecialIndividualProperty.Name == "var_type")
                     {
                         currentVarType = abilitySpecialIndividualProperty.Value.ToString();
                         continue;

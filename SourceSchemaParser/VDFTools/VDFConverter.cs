@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace SourceSchemaParser.VDFTools
 {
@@ -41,7 +37,7 @@ namespace SourceSchemaParser.VDFTools
                 // if we are expecting an open brace at this point, the tree is unbalanced
                 if (expectOpenBrace)
                 {
-                    throw new InvalidOperationException("Could not parse the VDF because a an opening '{' is missing.");
+                    throw new InvalidOperationException("Could not parse the VDF because an opening '{' is missing.");
                 }
 
                 // if we see a closing brace, the key/value collection has ended, so we pop off our collection and add it to our parent key
@@ -132,7 +128,7 @@ namespace SourceSchemaParser.VDFTools
 
         ///// <summary>
         ///// Given a string containing VDF formatted text, it will be parsed and converted JSON. Currently only supports VDF files in which all tokens are on
-        ///// separate lines. That is, '{', '}', '"key"', and '"key" "value"' tokens must be on separate lines until I come up with a better parser for different 
+        ///// separate lines. That is, '{', '}', '"key"', and '"key" "value"' tokens must be on separate lines until I come up with a better parser for different
         ///// formatting styles.
         ///// </summary>
         ///// <param name="path">Path to the file that we want to parse.</param>

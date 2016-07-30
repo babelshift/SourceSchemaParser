@@ -3,9 +3,6 @@ using Newtonsoft.Json.Linq;
 using SourceSchemaParser.Dota2;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SourceSchemaParser.JsonConverters
 {
@@ -29,7 +26,7 @@ namespace SourceSchemaParser.JsonConverters
             var properties = t.Children<JProperty>();
             foreach (var item in properties)
             {
-                if(item.Name == "Version")
+                if (item.Name == "Version")
                 {
                     continue;
                 }
@@ -38,7 +35,7 @@ namespace SourceSchemaParser.JsonConverters
 
                 DotaHeroSchemaItem heroSchemaItem = JsonConvert.DeserializeObject<DotaHeroSchemaItem>(item.Value.ToString());
                 heroSchemaItem.Name = item.Name;
-                if(heroSchemaItem.Team == "good") { heroSchemaItem.Team = "Good"; } // fix stupid caps
+                if (heroSchemaItem.Team == "good") { heroSchemaItem.Team = "Good"; } // fix stupid caps
 
                 heroes.Add(heroSchemaItem);
             }

@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SourceSchemaParser.JsonConverters
 {
@@ -23,7 +19,7 @@ namespace SourceSchemaParser.JsonConverters
             }
 
             // we have to check for this because the schema format is screwed up for Devourling where the date is actually an object
-            if(reader.TokenType == JsonToken.StartObject)
+            if (reader.TokenType == JsonToken.StartObject)
             {
                 return null;
             }

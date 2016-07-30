@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SourceSchemaParser.JsonConverters
 {
@@ -23,11 +19,11 @@ namespace SourceSchemaParser.JsonConverters
             }
 
             JValue v = (JValue)JToken.Load(reader);
-            if(v.Value.ToString() == "0")
+            if (v.Value.ToString() == "0")
             {
                 return false;
             }
-            else if(v.Value.ToString() == "1")
+            else if (v.Value.ToString() == "1")
             {
                 return true;
             }

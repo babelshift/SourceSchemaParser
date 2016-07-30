@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using SourceSchemaParser.JsonConverters;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SourceSchemaParser.Dota2
 {
@@ -45,7 +41,7 @@ namespace SourceSchemaParser.Dota2
         public int AbilityRangeBuffer { get; set; }
 
         [JsonProperty("AbilityCastPoint")]
-        public string AbilityCastPoint{ get; set; }
+        public string AbilityCastPoint { get; set; }
 
         [JsonProperty("AbilityChannelTime")]
         public string AbilityChannelTime { get; set; }
@@ -82,7 +78,7 @@ namespace SourceSchemaParser.Dota2
 
         [JsonProperty("AbilityUnitTargetFlags")]
         public string AbilityUnitTargetFlags { get; set; }
-        
+
         [JsonProperty("AbilityUnitTargetType")]
         public string AbilityUnitTargetType { get; set; }
 

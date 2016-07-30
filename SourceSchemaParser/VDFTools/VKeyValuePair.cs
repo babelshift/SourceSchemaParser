@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SourceSchemaParser.VDFTools
+﻿namespace SourceSchemaParser.VDFTools
 {
     /// <summary>
     /// Represents a key/value pair token in a VDF file.

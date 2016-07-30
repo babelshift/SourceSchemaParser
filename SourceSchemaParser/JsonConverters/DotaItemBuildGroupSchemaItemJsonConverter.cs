@@ -25,7 +25,7 @@ namespace SourceSchemaParser.JsonConverters
             List<DotaItemBuildGroupSchemaItem> itemBuildGroups = new List<DotaItemBuildGroupSchemaItem>();
 
             var itemBuildGroupProperties = t.Children<JProperty>();
-            foreach(var itemBuildGroupProperty in itemBuildGroupProperties)
+            foreach (var itemBuildGroupProperty in itemBuildGroupProperties)
             {
                 DotaItemBuildGroupSchemaItem itemBuildGroup = new DotaItemBuildGroupSchemaItem();
                 itemBuildGroup.Name = itemBuildGroupProperty.Name;
@@ -33,7 +33,7 @@ namespace SourceSchemaParser.JsonConverters
                 List<string> items = new List<string>();
 
                 var itemProperties = itemBuildGroupProperty.Value.Children<JProperty>();
-                foreach(var itemProperty in itemProperties)
+                foreach (var itemProperty in itemProperties)
                 {
                     items.Add(itemProperty.Value.ToString());
                 }

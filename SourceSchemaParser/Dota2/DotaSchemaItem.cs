@@ -40,15 +40,20 @@ namespace SourceSchemaParser.Dota2
     {
         [JsonProperty("bucket")]
         public string Bucket { get; set; }
+
         [JsonProperty("class")]
         public string Class { get; set; }
+
         [JsonProperty("category_tags")]
         public string CategoryTags { get; set; }
+
         [JsonProperty("date")]
         public DateTime? Date { get; set; }
+
         [JsonConverter(typeof(DotaSchemaItemPriceJsonConverter))]
         [JsonProperty("price")]
         public decimal? Price { get; set; }
+
         [JsonConverter(typeof(StringToBoolJsonConverter))]
         [JsonProperty("is_pack_item")]
         public bool? IsPackItem { get; set; }

@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SourceSchemaParser.Dota2;
 using System;
 using System.Collections.Generic;
 
