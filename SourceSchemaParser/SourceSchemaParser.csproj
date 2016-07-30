@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=5.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.5.0.2\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Projects\TestValveItemSchemaWrapper\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -53,13 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConfiguration.cs" />
-    <Compile Include="Dota2\DotaItemAbilitySchemaItem.cs" />
-    <Compile Include="Dota2\DotaAbilitySchemaItem.cs" />
-    <Compile Include="Dota2\DotaAbilitySpecialSchemaItem.cs" />
-    <Compile Include="Dota2\DotaSchema.cs" />
-    <Compile Include="Dota2\DotaSchemaContainer.cs" />
-    <Compile Include="Dota2\DotaSchemaItemAutograph.cs" />
-    <Compile Include="Dota2\DotaSchemaItemSet.cs" />
+    <Compile Include="DOTA2\DotaItemAbilitySchemaItem.cs" />
+    <Compile Include="DOTA2\DotaAbilitySchemaItem.cs" />
+    <Compile Include="DOTA2\DotaAbilitySpecialSchemaItem.cs" />
+    <Compile Include="DOTA2\DotaSchema.cs" />
+    <Compile Include="DOTA2\DotaSchemaContainer.cs" />
+    <Compile Include="DOTA2\DotaSchemaItemAutograph.cs" />
+    <Compile Include="DOTA2\DotaSchemaItemSet.cs" />
     <Compile Include="JsonConverters\DotaSchemaItemCreationDateJsonConverter.cs" />
     <Compile Include="JsonConverters\DotaSchemaItemSetItemsJsonConverter.cs" />
     <Compile Include="JsonConverters\DotaSchemaItemSetJsonConverter.cs" />
@@ -72,9 +72,9 @@
     <Compile Include="JsonConverters\DotaSchemaQualityJsonConverter.cs" />
     <Compile Include="JsonConverters\DotaSchemaRarityJsonConverter.cs" />
     <Compile Include="JsonConverters\DotaItemBuildGroupSchemaItemJsonConverter.cs" />
-    <Compile Include="Dota2\DotaItemBuildSchemaItem.cs" />
-    <Compile Include="Dota2\DotaItemBuildGroupSchemaItem.cs" />
-    <Compile Include="Dota2\DotaHeroSchemaItem.cs" />
+    <Compile Include="DOTA2\DotaItemBuildSchemaItem.cs" />
+    <Compile Include="DOTA2\DotaItemBuildGroupSchemaItem.cs" />
+    <Compile Include="DOTA2\DotaHeroSchemaItem.cs" />
     <Compile Include="JsonConverters\DotaAbilitySpecialSchemaItemJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToDotaItemAbilityJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToDotaAbilityJsonConverter.cs" />
@@ -82,16 +82,16 @@
     <Compile Include="JsonConverters\DotaSchemaItemPriceJsonConverter.cs" />
     <Compile Include="JsonConverters\StringToNullableBoolJsonConverter.cs" />
     <Compile Include="JsonConverters\StringToBoolJsonConverter.cs" />
-    <Compile Include="VDFTools\VDFConverter.cs" />
-    <Compile Include="VDFTools\VKeyValueCollection.cs" />
-    <Compile Include="VDFTools\VKeyValuePair.cs" />
-    <Compile Include="VDFTools\VRootToken.cs" />
-    <Compile Include="VDFTools\VRootTokenJsonConverter.cs" />
-    <Compile Include="VDFTools\VToken.cs" />
-    <Compile Include="Dota2\DotaLeague.cs" />
-    <Compile Include="Dota2\DotaSchemaItem.cs" />
-    <Compile Include="Dota2\DotaSchemaItemTool.cs" />
-    <Compile Include="Dota2\DotaSchemaItemToolUsage.cs" />
+    <Compile Include="Utilities\VDFConvert.cs" />
+    <Compile Include="Utilities\VKeyValueCollection.cs" />
+    <Compile Include="Utilities\VKeyValuePair.cs" />
+    <Compile Include="Utilities\VRootToken.cs" />
+    <Compile Include="Utilities\VRootTokenJsonConverter.cs" />
+    <Compile Include="Utilities\VToken.cs" />
+    <Compile Include="DOTA2\DotaLeague.cs" />
+    <Compile Include="DOTA2\DotaSchemaItem.cs" />
+    <Compile Include="DOTA2\DotaSchemaItemTool.cs" />
+    <Compile Include="DOTA2\DotaSchemaItemToolUsage.cs" />
     <Compile Include="JsonConverters\SchemaItemsToDotaLeaguesJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaItemToolUsageAdminToBoolJsonConverter.cs" />
     <Compile Include="JsonConverters\SchemaLanguageTokensJsonConverter.cs" />

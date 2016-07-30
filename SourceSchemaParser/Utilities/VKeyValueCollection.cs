@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SourceSchemaParser.VDFTools
+namespace SourceSchemaParser.Utilities
 {
     /// <summary>
     /// Represents a collection of key/value pairs in a VDF file.

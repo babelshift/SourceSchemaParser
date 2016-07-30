@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SourceSchemaParser.JsonConverters;
 
-namespace SourceSchemaParser.Dota2
+namespace SourceSchemaParser.DOTA2
 {
     internal class DotaSchemaItemToolUsage
     {

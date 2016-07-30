@@ -1,4 +1,4 @@
-﻿namespace SourceSchemaParser.Dota2
+﻿namespace SourceSchemaParser.DOTA2
 {
     internal class DotaSchemaItemTool
     {

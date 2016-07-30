@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SourceSchemaParser.VDFTools
+namespace SourceSchemaParser.Utilities
 {
     /// <summary>
     /// Handles serialization of VToken objects to JSON.

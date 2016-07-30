@@ -1,14 +1,55 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace SourceSchemaParser.VDFTools
+namespace SourceSchemaParser.Utilities
 {
-    public static class VDFConverter
+    public static class VDFConvert
     {
-        public static string ToJson(string[] vdfTextLines)
+        public static JObject ToJObject(string[] vdf)
         {
+            string json = ToJson(vdf);
+            JObject parsedSchema = JObject.Parse(json);
+            return parsedSchema;
+        }
+
+        /// <summary>
+        /// Deserializes an array of newline separated VDF formatted strings.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="vdf"></param>
+        /// <returns></returns>
+        public static T DeserializeObject<T>(string[] vdf)
+        {
+            if (vdf == null)
+            {
+                throw new ArgumentNullException("vdf");
+            }
+
+            if (vdf.Length == 0)
+            {
+                return default(T);
+            }
+
+            string json = ToJson(vdf);
+            T o = JsonConvert.DeserializeObject<T>(json);
+            return o;
+        }
+
+        public static string ToJson(string[] vdf)
+        {
+            if (vdf == null)
+            {
+                throw new ArgumentNullException("vdf");
+            }
+
+            if (vdf.Length == 0)
+            {
+                return String.Empty;
+            }
+
             Regex regexKey = new Regex("^\"((?:\\\\.|[^\\\\\"])*)\"", RegexOptions.Multiline);
             Regex regexKeyValue = new Regex("^\"((?:\\\\.|[^\"\\\\])*)\"[ \\t]*\"((?:\\\\.|[^\"\\\\])*)(\")?", RegexOptions.Multiline);
 
@@ -16,10 +57,10 @@ namespace SourceSchemaParser.VDFTools
             VRootToken rootCollection = null;
             bool expectOpenBrace = false;
 
-            for (int i = 0; i < vdfTextLines.Length; i++)
+            for (int i = 0; i < vdf.Length; i++)
             {
                 // get rid of white spaces on the ends of each line
-                string trimmedLine = vdfTextLines[i].Trim();
+                string trimmedLine = vdf[i].Trim();
 
                 // skip empty lines and comments;
                 if (String.IsNullOrEmpty(trimmedLine) || trimmedLine.StartsWith("/"))
@@ -81,7 +122,7 @@ namespace SourceSchemaParser.VDFTools
                             // this line did not include an ending quote, so we need to loop forever and build up the multi-line value until we find one
                             if (keyValueMatches[0].Groups.Count < 4 || keyValueMatches[0].Groups[3] == null || String.IsNullOrEmpty(keyValueMatches[0].Groups[3].Value))
                             {
-                                trimmedLine += Environment.NewLine + vdfTextLines[++i].Trim();
+                                trimmedLine += Environment.NewLine + vdf[++i].Trim();
                                 continue;
                             }
 

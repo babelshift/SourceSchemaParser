@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using SourceSchemaParser.JsonConverters;
-using SourceSchemaParser.VDFTools;
-using SourceSchemaParser.Dota2;
+using SourceSchemaParser.Utilities;
+using SourceSchemaParser.DOTA2;
 using Steam.Models.DOTA2;
 
 namespace SourceSchemaParser
@@ -18,22 +18,24 @@ namespace SourceSchemaParser
             AutoMapperConfiguration.Initialize();
         }
 
+        #region Dota Main Item Schema
+
         public static SchemaModel GetDotaSchema(string[] vdf)
         {
-            string json = VDFConverter.ToJson(vdf);
-            var schemaContainer = JsonConvert.DeserializeObject<DotaSchemaContainer>(json);
+            ValidateInput(vdf);
+
+            var schemaContainer = VDFConvert.DeserializeObject<DotaSchemaContainer>(vdf);
+
             var schemaModel = AutoMapperConfiguration.Mapper.Map<DotaSchema, SchemaModel>(schemaContainer.Schema);
+
             return schemaModel;
         }
 
         public static IReadOnlyCollection<ItemAbilitySchemaItemModel> GetDotaItemAbilities(string[] vdf)
         {
-            if (vdf == null)
-            {
-                throw new ArgumentNullException("vdf");
-            }
+            ValidateInput(vdf);
 
-            JObject schema = ConvertVdfToJObject(vdf);
+            JObject schema = VDFConvert.ToJObject(vdf);
 
             JToken item = null;
             if (schema.TryGetValue("DOTAAbilities", out item))
@@ -47,13 +49,14 @@ namespace SourceSchemaParser
                 throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Items Abilities schema file.");
             }
         }
-        
+
+        #endregion
+
+        #region Dota Localization 
+
         public static IReadOnlyDictionary<string, string> GetDotaPanoramaLocalizationKeys(string[] vdf)
         {
-            if (vdf == null)
-            {
-                throw new ArgumentNullException("vdf");
-            }
+            ValidateInput(vdf);
 
             var keys = GetLanguageTokensFromPanoramaSchema(vdf);
 
@@ -62,26 +65,22 @@ namespace SourceSchemaParser
 
         public static IReadOnlyDictionary<string, string> GetDotaPublicLocalizationKeys(string[] vdf)
         {
-            if(vdf == null)
-            {
-                throw new ArgumentNullException("vdf");
-            }
+            ValidateInput(vdf);
 
             var keys = GetLanguageTokensFromLanguageSchema(vdf);
 
             return new ReadOnlyDictionary<string, string>(keys);
         }
 
+        #endregion
+
         #region Dota Heroes
 
         public static IReadOnlyCollection<AbilitySchemaItemModel> GetDotaHeroAbilities(string[] vdf)
         {
-            if (vdf == null)
-            {
-                throw new ArgumentNullException("vdf");
-            }
+            ValidateInput(vdf);
 
-            JObject schema = ConvertVdfToJObject(vdf);
+            JObject schema = VDFConvert.ToJObject(vdf);
 
             JToken item = null;
             if (schema.TryGetValue("DOTAAbilities", out item))
@@ -98,17 +97,9 @@ namespace SourceSchemaParser
 
         public static IReadOnlyCollection<HeroSchemaModel> GetDotaHeroes(string[] vdf)
         {
-            if (vdf == null)
-            {
-                throw new ArgumentNullException("vdf");
-            }
+            ValidateInput(vdf);
 
-            if(vdf.Length == 0)
-            {
-                return null;
-            }
-
-            JObject schema = ConvertVdfToJObject(vdf);
+            JObject schema = VDFConvert.ToJObject(vdf);
 
             JToken item = null;
             if (schema.TryGetValue("DOTAHeroes", out item))
@@ -125,12 +116,9 @@ namespace SourceSchemaParser
 
         public static ItemBuildSchemaItemModel GetDotaItemBuild(string[] vdf)
         {
-            if (vdf == null)
-            {
-                throw new ArgumentNullException("vdf");
-            }
+            ValidateInput(vdf);
 
-            JObject schema = ConvertVdfToJObject(vdf);
+            JObject schema = VDFConvert.ToJObject(vdf);
 
             JToken item = null;
             if (schema.TryGetValue("itembuilds", out item))
@@ -151,9 +139,13 @@ namespace SourceSchemaParser
 
         public static IReadOnlyCollection<LeagueModel> GetDotaLeaguesFromText(string[] itemSchemaVdfText, string[] localizationVdfText)
         {
+            ValidateInput(itemSchemaVdfText);
+            ValidateInput(localizationVdfText);
+
             var leaguesFromSchema = GetLeaguesFromItemSchema(itemSchemaVdfText);
 
             var leagues = GetDotaLeagues(leaguesFromSchema, localizationVdfText);
+
             var leagueModels = AutoMapperConfiguration.Mapper.Map<IReadOnlyCollection<DotaLeague>, IReadOnlyCollection<LeagueModel>>(leagues);
 
             return leagueModels;
@@ -207,7 +199,7 @@ namespace SourceSchemaParser
 
         private static IReadOnlyCollection<DotaSchemaItem> GetLeaguesFromItemSchema(string[] vdfText)
         {
-            string json = VDFConverter.ToJson(vdfText);
+            string json = VDFConvert.ToJson(vdfText);
 
             return GetLeaguesFromJson(json);
         }
@@ -257,16 +249,12 @@ namespace SourceSchemaParser
 
         #endregion
         
-        private static JObject ConvertVdfToJObject(string[] vdf)
-        {
-            string json = VDFConverter.ToJson(vdf);
-            JObject parsedSchema = JObject.Parse(json);
-            return parsedSchema;
-        }
-
         private static IDictionary<string, string> GetLanguageTokensFromPanoramaSchema(string[] localizationVdfText)
         {
-            var json = VDFConverter.ToJson(localizationVdfText);
+            ValidateInput(localizationVdfText);
+
+            var json = VDFConvert.ToJson(localizationVdfText);
+
             return GetLanguageTokensFromPanoramaJson(json);
         }
 
@@ -303,12 +291,17 @@ namespace SourceSchemaParser
 
         private static IDictionary<string, string> GetLanguageTokensFromLanguageSchema(string[] localizationVdfText)
         {
-            var json = VDFConverter.ToJson(localizationVdfText);
+            ValidateInput(localizationVdfText);
+
+            var json = VDFConvert.ToJson(localizationVdfText);
+
             return GetLanguageTokensFromLanguageJson(json);
         }
 
         private static IDictionary<string, string> GetLanguageTokensFromLanguageJson(string json)
         {
+            ValidateInput(json);
+
             JObject languageSchema = JObject.Parse(json);
 
             JToken langItem = null;
@@ -327,16 +320,53 @@ namespace SourceSchemaParser
 
         public static IReadOnlyCollection<SchemaPrefabModel> GetDotaItemPrefabs(string[] vdf)
         {
-            string json = VDFConverter.ToJson(vdf);
+            ValidateInput(vdf);
 
-            JObject itemSchema = JObject.Parse(json);
+            JObject itemSchema = VDFConvert.ToJObject(vdf);
 
-            JToken item = itemSchema["items_game"]["prefabs"];
+            JToken item = null;
+            if (itemSchema.TryGetValue("items_game", out item))
+            {
+                if (item.HasValues && item["prefabs"] != null)
+                {
+                    item = item["prefabs"];
 
-            var prefabs = JsonConvert.DeserializeObject<IList<DotaSchemaPrefab>>(item.ToString(), new DotaSchemaPrefabJsonConverter());
-            var prefabModels = AutoMapperConfiguration.Mapper.Map<IList<DotaSchemaPrefab>, IList<SchemaPrefabModel>>(prefabs);
+                    var prefabs = JsonConvert.DeserializeObject<IList<DotaSchemaPrefab>>(item.ToString(), new DotaSchemaPrefabJsonConverter());
 
-            return new ReadOnlyCollection<SchemaPrefabModel>(prefabModels);
+                    var prefabModels = AutoMapperConfiguration.Mapper.Map<IList<DotaSchemaPrefab>, IList<SchemaPrefabModel>>(prefabs);
+
+                    return new ReadOnlyCollection<SchemaPrefabModel>(prefabModels);
+                }
+                else
+                {
+                    throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Item Prefabs schema file.");
+                }
+            }
+            else
+            {
+                throw new ArgumentException("You supplied a VDF file, but it wasn't the expected Dota Item Prefabs schema file.");
+            }
+        }
+
+        private static void ValidateInput(string[] vdf)
+        {
+            if (vdf == null)
+            {
+                throw new ArgumentNullException("Input cannot be empty or null.", "vdf");
+            }
+
+            if (vdf.Length == 0)
+            {
+                throw new ArgumentException("Input cannot be empty or null.", "vdf");
+            }
+        }
+
+        private static void ValidateInput(string text)
+        {
+            if (String.IsNullOrEmpty(text.Trim()))
+            {
+                throw new ArgumentNullException("Input cannot be empty or null.", "text");
+            }
         }
     }
 }
