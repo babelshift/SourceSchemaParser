@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SourceSchemaParser.JsonConverters;
 
-namespace SourceSchemaParser.Dota2
+namespace SourceSchemaParser.DOTA2
 {
     internal class DotaHeroSchemaItem
     {
@@ -98,6 +98,30 @@ namespace SourceSchemaParser.Dota2
 
         [JsonProperty("Ability16")]
         public string Ability16 { get; set; }
+
+        [JsonProperty("Ability17")]
+        public string Ability17 { get; set; }
+
+        [JsonProperty("Ability18")]
+        public string Ability18 { get; set; }
+        
+        [JsonProperty("Ability19")]
+        public string Ability19 { get; set; }
+        
+        [JsonProperty("Ability20")]
+        public string Ability20 { get; set; }
+
+        [JsonProperty("Ability21")]
+        public string Ability21 { get; set; }
+
+        [JsonProperty("Ability22")]
+        public string Ability22 { get; set; }
+
+        [JsonProperty("Ability23")]
+        public string Ability23 { get; set; }
+
+        [JsonProperty("Ability24")]
+        public string Ability24 { get; set; }
 
         [JsonProperty("ArmorPhysical")]
         public double ArmorPhysical { get; set; }

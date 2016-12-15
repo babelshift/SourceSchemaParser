@@ -2,7 +2,7 @@
 using SourceSchemaParser.JsonConverters;
 using System.Collections.Generic;
 
-namespace SourceSchemaParser.Dota2
+namespace SourceSchemaParser.DOTA2
 {
     internal class DotaSchema
     {

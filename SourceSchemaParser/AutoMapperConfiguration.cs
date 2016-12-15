@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SourceSchemaParser.Dota2;
+using SourceSchemaParser.DOTA2;
 using Steam.Models.DOTA2;
 using Steam.Models.GameEconomy;
 using System;

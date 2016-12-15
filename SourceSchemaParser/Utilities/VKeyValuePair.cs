@@ -1,4 +1,4 @@
-﻿namespace SourceSchemaParser.VDFTools
+﻿namespace SourceSchemaParser.Utilities
 {
     /// <summary>
     /// Represents a key/value pair token in a VDF file.

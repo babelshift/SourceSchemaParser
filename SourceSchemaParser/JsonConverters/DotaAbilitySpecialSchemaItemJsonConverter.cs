@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SourceSchemaParser.Dota2;
+using SourceSchemaParser.DOTA2;
 using System;
 using System.Collections.Generic;
 
@@ -36,6 +36,7 @@ namespace SourceSchemaParser.JsonConverters
                 }
 
                 string currentVarType = String.Empty;
+                string currentLinkedSpecialBonus = String.Empty;
 
                 // we need to go through all the actual values of the special properties
                 var abilitySpecialIndividualProperties = abilitySpecialProperty.Value.Children<JProperty>();
@@ -46,6 +47,12 @@ namespace SourceSchemaParser.JsonConverters
                     if (abilitySpecialIndividualProperty.Name == "var_type")
                     {
                         currentVarType = abilitySpecialIndividualProperty.Value.ToString();
+                        continue;
+                    }
+
+                    if (abilitySpecialIndividualProperty.Name == "LinkedSpecialBonus")
+                    {
+                        currentLinkedSpecialBonus = abilitySpecialIndividualProperty.Value.ToString();
                         continue;
                     }
 

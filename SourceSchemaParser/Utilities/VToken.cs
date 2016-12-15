@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SourceSchemaParser.VDFTools
+namespace SourceSchemaParser.Utilities
 {
     internal enum VTokenType
     {

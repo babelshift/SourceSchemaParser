@@ -1,4 +1,4 @@
-﻿namespace SourceSchemaParser.VDFTools
+﻿namespace SourceSchemaParser.Utilities
 {
     /// <summary>
     /// Represents the root of the tree of tokens in a VDF file.
