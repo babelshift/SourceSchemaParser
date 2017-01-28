@@ -30,6 +30,7 @@ namespace SourceSchemaParser
         [JsonProperty("creation_date")]
         public DateTime? CreationDate { get; set; }
 
+        [JsonConverter(typeof(DateTimeJsonConverter))]
         [JsonProperty("expiration_date")]
         public DateTime? ExpirationDate { get; set; }
     }

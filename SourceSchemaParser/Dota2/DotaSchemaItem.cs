@@ -47,6 +47,7 @@ namespace SourceSchemaParser.DOTA2
         [JsonProperty("category_tags")]
         public string CategoryTags { get; set; }
 
+        [JsonConverter(typeof(DateTimeJsonConverter))]
         [JsonProperty("date")]
         public DateTime? Date { get; set; }
 
