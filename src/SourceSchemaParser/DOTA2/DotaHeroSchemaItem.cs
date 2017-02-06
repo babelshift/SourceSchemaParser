@@ -144,8 +144,8 @@ namespace SourceSchemaParser.DOTA2
         [JsonProperty("AttackRate")]
         public double AttackRate { get; set; }
 
-        [JsonProperty("AttackAnimationPouint")]
-        public double AttackAnimationPouint { get; set; }
+        [JsonProperty("AttackAnimationPoint")]
+        public double AttackAnimationPoint { get; set; }
 
         [JsonProperty("AttackAcquisitionRange")]
         public uint AttackAcquisitionRange { get; set; }
@@ -168,11 +168,11 @@ namespace SourceSchemaParser.DOTA2
         [JsonProperty("AttributeStrengthGain")]
         public double AttributeStrengthGain { get; set; }
 
-        [JsonProperty("AttributeBaseuintelligence")]
-        public uint AttributeBaseuintelligence { get; set; }
+        [JsonProperty("AttributeBaseIntelligence")]
+        public uint AttributeBaseIntelligence { get; set; }
 
-        [JsonProperty("AttributeuintelligenceGain")]
-        public double AttributeuintelligenceGain { get; set; }
+        [JsonProperty("AttributeIntelligenceGain")]
+        public double AttributeIntelligenceGain { get; set; }
 
         [JsonProperty("AttributeBaseAgility")]
         public uint AttributeBaseAgility { get; set; }
