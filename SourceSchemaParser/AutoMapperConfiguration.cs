@@ -25,13 +25,13 @@ namespace SourceSchemaParser
                 {
                     x.CreateMap<DotaHeroSchemaItem, HeroSchemaModel>();
 
-                    x.CreateMap<DotaSchema, SchemaModel>();
+                    x.CreateMap<DotaSchema, Steam.Models.DOTA2.SchemaModel>();
                     x.CreateMap<DotaSchemaGameInfo, SchemaGameInfoModel>();
                     x.CreateMap<DotaSchemaRarity, SchemaRarityModel>();
                     x.CreateMap<DotaSchemaColor, SchemaColorModel>();
-                    x.CreateMap<DotaSchemaItem, SchemaItemModel>();
+                    x.CreateMap<DotaSchemaItem, Steam.Models.DOTA2.SchemaItemModel>();
                     x.CreateMap<DotaSchemaPrefab, SchemaPrefabModel>();
-                    x.CreateMap<DotaSchemaItemSet, SchemaItemSetModel>();
+                    x.CreateMap<DotaSchemaItemSet, Steam.Models.DOTA2.SchemaItemSetModel>();
                     x.CreateMap<DotaSchemaPrefab, SchemaPrefabModel>();
                     x.CreateMap<DotaSchemaItemAutograph, SchemaItemAutographModel>();
                     x.CreateMap<DotaSchemaQuality, SchemaQualityModel>();
