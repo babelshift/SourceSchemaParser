@@ -6,7 +6,7 @@ namespace SourceSchemaParser.DOTA2
     internal class DotaHeroSchemaItem
     {
         [JsonProperty("HeroID")]
-        public int HeroId { get; set; }
+        public uint HeroId { get; set; }
 
         public string Name { get; set; }
 
@@ -133,10 +133,10 @@ namespace SourceSchemaParser.DOTA2
         public string AttackCapabilities { get; set; }
 
         [JsonProperty("AttackDamageMin")]
-        public int AttackDamageMin { get; set; }
+        public uint AttackDamageMin { get; set; }
 
         [JsonProperty("AttackDamageMax")]
-        public int AttackDamageMax { get; set; }
+        public uint AttackDamageMax { get; set; }
 
         [JsonProperty("AttackDamageType")]
         public string AttackDamageType { get; set; }
@@ -144,62 +144,62 @@ namespace SourceSchemaParser.DOTA2
         [JsonProperty("AttackRate")]
         public double AttackRate { get; set; }
 
-        [JsonProperty("AttackAnimationPoint")]
-        public double AttackAnimationPoint { get; set; }
+        [JsonProperty("AttackAnimationPouint")]
+        public double AttackAnimationPouint { get; set; }
 
         [JsonProperty("AttackAcquisitionRange")]
-        public int AttackAcquisitionRange { get; set; }
+        public uint AttackAcquisitionRange { get; set; }
 
         [JsonProperty("AttackRange")]
-        public int AttackRange { get; set; }
+        public uint AttackRange { get; set; }
 
         [JsonProperty("ProjectileModel")]
         public string ProjectileModel { get; set; }
 
         [JsonProperty("ProjectileSpeed")]
-        public int ProjectileSpeed { get; set; }
+        public uint ProjectileSpeed { get; set; }
 
         [JsonProperty("AttributePrimary")]
         public string AttributePrimary { get; set; }
 
         [JsonProperty("AttributeBaseStrength")]
-        public int AttributeBaseStrength { get; set; }
+        public uint AttributeBaseStrength { get; set; }
 
         [JsonProperty("AttributeStrengthGain")]
         public double AttributeStrengthGain { get; set; }
 
-        [JsonProperty("AttributeBaseIntelligence")]
-        public int AttributeBaseIntelligence { get; set; }
+        [JsonProperty("AttributeBaseuintelligence")]
+        public uint AttributeBaseuintelligence { get; set; }
 
-        [JsonProperty("AttributeIntelligenceGain")]
-        public double AttributeIntelligenceGain { get; set; }
+        [JsonProperty("AttributeuintelligenceGain")]
+        public double AttributeuintelligenceGain { get; set; }
 
         [JsonProperty("AttributeBaseAgility")]
-        public int AttributeBaseAgility { get; set; }
+        public uint AttributeBaseAgility { get; set; }
 
         [JsonProperty("AttributeAgilityGain")]
         public double AttributeAgilityGain { get; set; }
 
         [JsonProperty("BountyXP")]
-        public int BountyXP { get; set; }
+        public uint BountyXP { get; set; }
 
         [JsonProperty("BountyGoldMin")]
-        public int BountyGoldMin { get; set; }
+        public uint BountyGoldMin { get; set; }
 
         [JsonProperty("BountyGoldMax")]
-        public int BountyGoldMax { get; set; }
+        public uint BountyGoldMax { get; set; }
 
         [JsonProperty("BoundsHullName")]
         public string BoundsHullName { get; set; }
 
         [JsonProperty("RingRadius")]
-        public int RingRadius { get; set; }
+        public uint RingRadius { get; set; }
 
         [JsonProperty("MovementCapabilities")]
         public string MovementCapabilities { get; set; }
 
         [JsonProperty("MovementSpeed")]
-        public int MovementSpeed { get; set; }
+        public uint MovementSpeed { get; set; }
 
         [JsonProperty("MovementTurnRate")]
         public double MovementTurnRate { get; set; }
@@ -209,13 +209,13 @@ namespace SourceSchemaParser.DOTA2
         public bool HasAggressiveStance { get; set; }
 
         [JsonProperty("StatusHealth")]
-        public int StatusHealth { get; set; }
+        public uint StatusHealth { get; set; }
 
         [JsonProperty("StatusHealthRegen")]
         public double StatusHealthRegen { get; set; }
 
         [JsonProperty("StatusMana")]
-        public int StatusMana { get; set; }
+        public uint StatusMana { get; set; }
 
         [JsonProperty("StatusManaRegen")]
         public double StatusManaRegen { get; set; }
@@ -236,10 +236,10 @@ namespace SourceSchemaParser.DOTA2
         public string UnitRelationshipClass { get; set; }
 
         [JsonProperty("VisionDaytimeRange")]
-        public int VisionDaytimeRange { get; set; }
+        public uint VisionDaytimeRange { get; set; }
 
         [JsonProperty("VisionNighttimeRange")]
-        public int VisionNighttimeRange { get; set; }
+        public uint VisionNighttimeRange { get; set; }
 
         [JsonProperty("HasInventory")]
         [JsonConverter(typeof(StringToBoolJsonConverter))]
