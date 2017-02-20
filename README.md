@@ -1,6 +1,7 @@
 # SourceSchemaParser
 [![Build status](https://ci.appveyor.com/api/projects/status/79d9k8aqjs61m6or?svg=true)](https://ci.appveyor.com/project/JustinSkiles/sourceschemaparser)
 [![NuGet](https://img.shields.io/nuget/v/SourceSchemaParser.svg)](https://www.nuget.org/packages/SourceSchemaParser)
+[![MyGet CI](https://img.shields.io/myget/babelshift-ci/v/SourceSchemaParser.svg)](https://www.myget.org/feed/babelshift-ci/package/nuget/SourceSchemaParser)
 
 This is a .NET library that attempts to make reading Valve's Source-engine schema files a little easier. The intention is to be able to consume .vdf and .txt (in VDF format) files into JSON and in memory objects.
 
