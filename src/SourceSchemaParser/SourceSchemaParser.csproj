@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>Parses Valve Source Engine game schema files into easy to use object oriented structures.</Description>
-    <VersionPrefix>2.0.2</VersionPrefix>
+    <VersionPrefix>2.0.3-ci</VersionPrefix>
     <Authors>Justin Skiles</Authors>
     <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
     <AssemblyName>SourceSchemaParser</AssemblyName>
