@@ -178,11 +178,22 @@ namespace SourceSchemaParser
 
         private static void ReplaceTokensWithLocalizedValues(IReadOnlyCollection<DotaSchemaItem> leagues, IDictionary<string, string> tokens)
         {
+            if(leagues == null || tokens == null || tokens.Count == 0)
+            {
+                return;
+            }
+
             foreach (var league in leagues)
             {
-                league.ItemName = GetLanguageToken(league.ItemName.Remove(0, 1), tokens);
-                league.ItemDescription = GetLanguageToken(league.ItemDescription.Remove(0, 1), tokens);
-                if (!String.IsNullOrEmpty(league.ItemTypeName))
+                if (!string.IsNullOrWhiteSpace(league.ItemName))
+                {
+                    league.ItemName = GetLanguageToken(league.ItemName.Remove(0, 1), tokens);
+                }
+                if (!string.IsNullOrWhiteSpace(league.ItemDescription))
+                {
+                    league.ItemDescription = GetLanguageToken(league.ItemDescription.Remove(0, 1), tokens);
+                }
+                if (!string.IsNullOrEmpty(league.ItemTypeName))
                 {
                     league.ItemTypeName = GetLanguageToken(league.ItemTypeName.Remove(0, 1), tokens);
                 }
