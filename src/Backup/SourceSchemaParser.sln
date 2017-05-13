@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceSchemaParser.Net45", "SourceSchemaParser.Net45\SourceSchemaParser.Net45.csproj", "{F46F6EB7-2BF1-48FD-AEAE-3145FA294A96}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourceSchemaParser", "SourceSchemaParser\SourceSchemaParser.csproj", "{88846063-566D-4920-A338-9CF28DD291A8}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SourceSchemaParser", "SourceSchemaParser\SourceSchemaParser.xproj", "{88846063-566D-4920-A338-9CF28DD291A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

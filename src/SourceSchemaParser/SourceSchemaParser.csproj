@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Parses Valve Source Engine game schema files into easy to use object oriented structures.</Description>
+    <VersionPrefix>2.0.1</VersionPrefix>
+    <Authors>Justin Skiles</Authors>
+    <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
+    <AssemblyName>SourceSchemaParser</AssemblyName>
+    <PackageId>SourceSchemaParser</PackageId>
+    <PackageProjectUrl>https://github.com/babelshift/SourceSchemaParser</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/babelshift/SourceSchemaParser/master/LICENSE</PackageLicenseUrl>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="5.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Steam.Models" Version="3.0.1-ci-00027" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+</Project>

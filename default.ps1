@@ -15,7 +15,7 @@ task clean {
 }
 
 task init { 
-  exec { .\build\dotnet\install.ps1 --Version "1.0.0-preview3-003171" | Out-Default }
+  exec { .\build\dotnet\install.ps1 --Version "1.0.3" | Out-Default }
   exec { dotnet --version | Out-Default }
 }
 
@@ -24,12 +24,18 @@ task release {
 }
 
 task compile -depends clean {
-  $projectPath = "$sourceDir\SourceSchemaParser\project.json"
+  $projectPath = "$sourceDir\SourceSchemaParser\SourceSchemaParser.csproj"
 
   $version = if ($env:APPVEYOR_BUILD_NUMBER -ne $NULL) { $env:APPVEYOR_BUILD_NUMBER } else { '0' }
   $version = "{0:D5}" -f [convert]::ToInt32($version, 10)
 
   exec { dotnet restore $projectPath }
   exec { dotnet build $projectPath -c $config }
-  exec { dotnet pack $projectPath -c $config -o $artifactsDir --version-suffix $version }
+
+  if ($env:APPVEYOR_REPO_TAG -eq $true) {
+    exec { dotnet pack $projectPath -c $config -o $artifactsDir }
+  }
+  else {
+    exec { dotnet pack $projectPath -c $config -o $artifactsDir --version-suffix $version }
+  }
 }
