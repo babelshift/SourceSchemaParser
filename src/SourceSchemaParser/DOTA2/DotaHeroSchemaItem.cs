@@ -263,7 +263,7 @@ namespace SourceSchemaParser.DOTA2
         [JsonProperty("ARDMDisabled")]
         public string ARDMDisabled { get; set; }
 
-        [JsonProperty("url")]
+        [JsonProperty("workshop_guide_name")]
         public string Url { get; set; }
 
         [JsonProperty("role")]

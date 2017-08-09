@@ -35,6 +35,7 @@ namespace SourceSchemaParser.JsonConverters
                 JObject o = (JObject)item.Value;
 
                 DotaHeroSchemaItem heroSchemaItem = JsonConvert.DeserializeObject<DotaHeroSchemaItem>(item.Value.ToString());
+                if (!string.IsNullOrWhiteSpace(heroSchemaItem.Url)) { heroSchemaItem.Url = heroSchemaItem.Url.Replace(" ", "_"); }
                 heroSchemaItem.Name = item.Name;
                 if (heroSchemaItem.Team == "good") { heroSchemaItem.Team = "Good"; } // fix stupid caps
 
