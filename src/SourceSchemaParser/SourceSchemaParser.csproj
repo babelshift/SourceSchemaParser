@@ -2,16 +2,13 @@
 
   <PropertyGroup>
     <Description>Parses Valve Source Engine game schema files into easy to use object oriented structures.</Description>
-    <VersionPrefix>2.0.3</VersionPrefix>
+    <VersionPrefix>3.0.0</VersionPrefix>
     <Authors>Justin Skiles</Authors>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>SourceSchemaParser</AssemblyName>
     <PackageId>SourceSchemaParser</PackageId>
     <PackageProjectUrl>https://github.com/babelshift/SourceSchemaParser</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/babelshift/SourceSchemaParser/master/LICENSE</PackageLicenseUrl>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
