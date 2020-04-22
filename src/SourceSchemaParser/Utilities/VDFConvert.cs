@@ -6,9 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace SourceSchemaParser.Utilities
 {
-    public static class VDFConvert
+    public class VDFConvert : IVDFConvert
     {
-        public static JObject ToJObject(string[] vdf)
+        public JObject ToJObject(IReadOnlyList<string> vdf)
         {
             string json = ToJson(vdf);
             JObject parsedSchema = JObject.Parse(json);
@@ -21,14 +21,14 @@ namespace SourceSchemaParser.Utilities
         /// <typeparam name="T"></typeparam>
         /// <param name="vdf"></param>
         /// <returns></returns>
-        public static T DeserializeObject<T>(string[] vdf)
+        public T DeserializeObject<T>(IReadOnlyList<string> vdf)
         {
             if (vdf == null)
             {
-                throw new ArgumentNullException("vdf");
+                throw new ArgumentNullException(nameof(vdf));
             }
 
-            if (vdf.Length == 0)
+            if (vdf.Count == 0)
             {
                 return default(T);
             }
@@ -38,14 +38,19 @@ namespace SourceSchemaParser.Utilities
             return o;
         }
 
-        public static string ToJson(string[] vdf)
+        /// <summary>
+        /// Given a string containing VDF formatted text, it will be parsed and converted JSON. Currently only supports VDF files in which all tokens are on
+        /// separate lines. That is, '{', '}', '"key"', and '"key" "value"' tokens must be on separate lines until I come up with a better parser for different
+        /// formatting styles.
+        /// </summary>
+        public string ToJson(IReadOnlyList<string> vdf)
         {
             if (vdf == null)
             {
-                throw new ArgumentNullException("vdf");
+                throw new ArgumentNullException(nameof(vdf));
             }
 
-            if (vdf.Length == 0)
+            if (vdf.Count == 0)
             {
                 return String.Empty;
             }
@@ -57,7 +62,7 @@ namespace SourceSchemaParser.Utilities
             VRootToken rootCollection = null;
             bool expectOpenBrace = false;
 
-            for (int i = 0; i < vdf.Length; i++)
+            for (int i = 0; i < vdf.Count; i++)
             {
                 // get rid of white spaces on the ends of each line
                 string trimmedLine = vdf[i].Trim();
@@ -166,19 +171,5 @@ namespace SourceSchemaParser.Utilities
 
             return JsonConvert.SerializeObject(rootCollection);
         }
-
-        ///// <summary>
-        ///// Given a string containing VDF formatted text, it will be parsed and converted JSON. Currently only supports VDF files in which all tokens are on
-        ///// separate lines. That is, '{', '}', '"key"', and '"key" "value"' tokens must be on separate lines until I come up with a better parser for different
-        ///// formatting styles.
-        ///// </summary>
-        ///// <param name="path">Path to the file that we want to parse.</param>
-        ///// <returns></returns>
-        //public static string ToJson(string vdfText)
-        //{
-        //    var lines = vdfText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-
-        //    return ToJson(lines);
-        //}
     }
 }
