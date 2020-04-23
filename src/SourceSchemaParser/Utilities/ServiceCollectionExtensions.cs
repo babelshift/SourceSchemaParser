@@ -16,7 +16,6 @@ namespace SourceSchemaParser.Utilities
 
             services.TryAdd(ServiceDescriptor.Singleton<IVDFConvert, VDFConvert>());
             services.TryAdd(ServiceDescriptor.Singleton<ISchemaParser, SchemaParser>());
-            services.AddAutoMapper(typeof(SchemaParser).Assembly);
 
             return services;
         }
