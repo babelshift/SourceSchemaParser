@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reflection;
 
 namespace SourceSchemaParser.JsonConverters
@@ -20,7 +21,7 @@ namespace SourceSchemaParser.JsonConverters
                 return null;
             }
 
-            Dictionary<string, string> tokens = new Dictionary<string, string>();
+            Dictionary<string, string> tokens = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
             JToken t = JToken.Load(reader);
             var tokenProperties = t.Children<JProperty>();
@@ -29,7 +30,7 @@ namespace SourceSchemaParser.JsonConverters
                 tokens.Add(tokenProperty.Name, tokenProperty.Value.ToString());
             }
 
-            return tokens;
+            return new ReadOnlyDictionary<string, string>(tokens);
         }
 
         public override bool CanWrite { get { return false; } }

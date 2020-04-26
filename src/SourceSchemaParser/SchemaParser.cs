@@ -284,7 +284,7 @@ namespace SourceSchemaParser
             JToken item = null;
             if (languageSchema.TryGetValue("dota", out item))
             {
-                return JsonConvert.DeserializeObject<IReadOnlyDictionary<string, string>>(item.ToString(), new SchemaLanguageTokensJsonConverter());
+                return JsonConvert.DeserializeObject<ReadOnlyDictionary<string, string>>(item.ToString(), new SchemaLanguageTokensJsonConverter());
             }
             else
             {
@@ -318,7 +318,7 @@ namespace SourceSchemaParser
             JToken item = null;
             if (languageSchema.TryGetValue("lang", out langItem) && ((JObject)langItem).TryGetValue("Tokens", out item))
             {
-                return JsonConvert.DeserializeObject<IReadOnlyDictionary<string, string>>(item.ToString(), new SchemaLanguageTokensJsonConverter());
+                return JsonConvert.DeserializeObject<ReadOnlyDictionary<string, string>>(item.ToString(), new SchemaLanguageTokensJsonConverter());
             }
             else
             {
