@@ -23,6 +23,7 @@ namespace SourceSchemaParser
             CreateMap<DotaSchemaItemTool, SchemaItemToolModel>();
             CreateMap<DotaSchemaItemToolUsage, SchemaItemToolUsageModel>();
             CreateMap<DotaSchemaItemPriceInfo, SchemaItemPriceInfoModel>();
+            CreateMap<DotaSchemaItemStaticAttribute, SchemaItemStaticAttributeModel>();
             CreateMap<DotaItemAbilitySchemaItem, ItemAbilitySchemaItemModel>();
             CreateMap<DotaAbilitySpecialSchemaItem, AbilitySpecialSchemaItemModel>();
             CreateMap<DotaAbilitySchemaItem, AbilitySchemaItemModel>();

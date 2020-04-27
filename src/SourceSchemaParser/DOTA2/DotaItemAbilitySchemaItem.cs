@@ -138,5 +138,9 @@ namespace SourceSchemaParser.DOTA2
 
         [JsonProperty("ItemDisassembleRule")]
         public string ItemDisassembleRule { get; set; }
+
+        [JsonProperty("ItemIsNeutralDrop")]
+        [JsonConverter(typeof(StringToNullableBoolJsonConverter))]
+        public bool? ItemIsNeutralDrop { get; set; }
     }
 }

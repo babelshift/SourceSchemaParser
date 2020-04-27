@@ -34,6 +34,19 @@ namespace SourceSchemaParser.DOTA2
         [JsonConverter(typeof(DotaSchemaItemBundleJsonConverter))]
         [JsonProperty("bundle")]
         public IList<string> BundledItems { get; set; }
+
+        [JsonConverter(typeof(DotaSchemaItemStaticAttributeJsonConverter))]
+        [JsonProperty("static_attributes")]
+        public IList<DotaSchemaItemStaticAttribute> StaticAttributes { get; set; }
+    }
+
+    public class DotaSchemaItemStaticAttribute
+    {
+        [JsonProperty("attribute_class")]
+        public string Class { get; set; }
+
+        [JsonProperty("value")]
+        public string Value { get; set; }
     }
 
     public class DotaSchemaItemPriceInfo
