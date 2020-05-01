@@ -26,15 +26,15 @@ namespace SourceSchemaParser
 
         #region Dota Main Item Schema
 
-        public SchemaModel GetDotaSchema(IEnumerable<string> vdf)
+        public Schema GetDotaSchema(IEnumerable<string> vdf)
         {
             ValidateInput(vdf);
 
             var schemaContainer = vdfConvert.DeserializeObject<DotaSchemaContainer>(vdf.ToList());
-            return mapper.Map<DotaSchema, SchemaModel>(schemaContainer.Schema);
+            return mapper.Map<DotaSchema, Schema>(schemaContainer.Schema);
         }
 
-        public IReadOnlyCollection<ItemAbilitySchemaItemModel> GetDotaItemAbilities(IEnumerable<string> vdf)
+        public IReadOnlyCollection<ItemAbility> GetDotaItemAbilities(IEnumerable<string> vdf)
         {
             ValidateInput(vdf);
 
@@ -44,8 +44,8 @@ namespace SourceSchemaParser
             if (schema.TryGetValue("DOTAAbilities", out item))
             {
                 var itemAbilities = JsonConvert.DeserializeObject<IList<DotaItemAbilitySchemaItem>>(item.ToString(), new SchemaItemToDotaItemAbilityJsonConverter());
-                var itemAbilityModels = mapper.Map<IList<DotaItemAbilitySchemaItem>, IList<ItemAbilitySchemaItemModel>>(itemAbilities);
-                return new ReadOnlyCollection<ItemAbilitySchemaItemModel>(itemAbilityModels);
+                var itemAbilityModels = mapper.Map<IList<DotaItemAbilitySchemaItem>, IList<ItemAbility>>(itemAbilities);
+                return new ReadOnlyCollection<ItemAbility>(itemAbilityModels);
             }
             else
             {
@@ -75,7 +75,7 @@ namespace SourceSchemaParser
 
         #region Dota Heroes
 
-        public IReadOnlyCollection<AbilitySchemaItemModel> GetDotaHeroAbilities(IEnumerable<string> vdf)
+        public IReadOnlyCollection<HeroAbility> GetDotaHeroAbilities(IEnumerable<string> vdf)
         {
             ValidateInput(vdf);
 
@@ -85,8 +85,8 @@ namespace SourceSchemaParser
             if (schema.TryGetValue("DOTAAbilities", out item))
             {
                 var abilities = JsonConvert.DeserializeObject<IList<DotaAbilitySchemaItem>>(item.ToString(), new SchemaItemToDotaAbilityJsonConverter());
-                var abilityModels = mapper.Map<IList<DotaAbilitySchemaItem>, IList<AbilitySchemaItemModel>>(abilities);
-                return new ReadOnlyCollection<AbilitySchemaItemModel>(abilityModels);
+                var abilityModels = mapper.Map<IList<DotaAbilitySchemaItem>, IList<HeroAbility>>(abilities);
+                return new ReadOnlyCollection<HeroAbility>(abilityModels);
             }
             else
             {
@@ -94,7 +94,7 @@ namespace SourceSchemaParser
             }
         }
 
-        public IReadOnlyCollection<HeroSchemaModel> GetDotaHeroes(IEnumerable<string> vdf)
+        public IReadOnlyCollection<Hero> GetDotaHeroes(IEnumerable<string> vdf)
         {
             ValidateInput(vdf);
 
@@ -104,8 +104,8 @@ namespace SourceSchemaParser
             if (schema.TryGetValue("DOTAHeroes", out item))
             {
                 var heroes = JsonConvert.DeserializeObject<IList<DotaHeroSchemaItem>>(item.ToString(), new SchemaItemToDotaHeroJsonConverter());
-                var heroModels = mapper.Map<IList<DotaHeroSchemaItem>, IList<HeroSchemaModel>>(heroes);
-                return new ReadOnlyCollection<HeroSchemaModel>(heroModels);
+                var heroModels = mapper.Map<IList<DotaHeroSchemaItem>, IList<Hero>>(heroes);
+                return new ReadOnlyCollection<Hero>(heroModels);
             }
             else
             {
@@ -113,7 +113,7 @@ namespace SourceSchemaParser
             }
         }
 
-        public ItemBuildSchemaItemModel GetDotaItemBuild(IEnumerable<string> vdf)
+        public ItemBuild GetDotaItemBuild(IEnumerable<string> vdf)
         {
             ValidateInput(vdf);
 
@@ -123,7 +123,7 @@ namespace SourceSchemaParser
             if (schema.TryGetValue("itembuilds", out item))
             {
                 var itemBuild = item.ToObject<DotaItemBuildSchemaItem>();
-                var itemBuildModel = mapper.Map<DotaItemBuildSchemaItem, ItemBuildSchemaItemModel>(itemBuild);
+                var itemBuildModel = mapper.Map<DotaItemBuildSchemaItem, ItemBuild>(itemBuild);
                 return itemBuildModel;
             }
             else
@@ -238,7 +238,7 @@ namespace SourceSchemaParser
 
         #endregion
 
-        public IReadOnlyCollection<SchemaPrefabModel> GetDotaItemPrefabs(IEnumerable<string> vdf)
+        public IReadOnlyCollection<SchemaPrefab> GetDotaItemPrefabs(IEnumerable<string> vdf)
         {
             ValidateInput(vdf);
 
@@ -253,9 +253,9 @@ namespace SourceSchemaParser
 
                     var prefabs = JsonConvert.DeserializeObject<IList<DotaSchemaPrefab>>(item.ToString(), new DotaSchemaPrefabJsonConverter());
 
-                    var prefabModels = mapper.Map<IList<DotaSchemaPrefab>, IList<SchemaPrefabModel>>(prefabs);
+                    var prefabModels = mapper.Map<IList<DotaSchemaPrefab>, IList<SchemaPrefab>>(prefabs);
 
-                    return new ReadOnlyCollection<SchemaPrefabModel>(prefabModels);
+                    return new ReadOnlyCollection<SchemaPrefab>(prefabModels);
                 }
                 else
                 {

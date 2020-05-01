@@ -6,5 +6,6 @@
         public string Value { get; set; }
         public string VarType { get; set; }
         public string LinkedSpecialBonus { get; set; }
+        public bool RequiresScepter { get; set; }
     }
 }

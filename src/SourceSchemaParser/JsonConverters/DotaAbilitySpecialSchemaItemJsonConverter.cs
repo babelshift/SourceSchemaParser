@@ -36,8 +36,11 @@ namespace SourceSchemaParser.JsonConverters
                     continue;
                 }
 
-                string currentVarType = String.Empty;
-                string currentLinkedSpecialBonus = String.Empty;
+                string abilityName = string.Empty;
+                string abilityValue = string.Empty;
+                string abilityVarType = string.Empty;
+                string abilityLinkedSpecialBonus = string.Empty;
+                bool abilityRequiresScepter = false;
 
                 // we need to go through all the actual values of the special properties
                 var abilitySpecialIndividualProperties = abilitySpecialProperty.Value.Children<JProperty>();
@@ -47,26 +50,38 @@ namespace SourceSchemaParser.JsonConverters
                     // record the var_type of this special
                     if (abilitySpecialIndividualProperty.Name == "var_type")
                     {
-                        currentVarType = abilitySpecialIndividualProperty.Value.ToString();
-                        continue;
+                        abilityVarType = abilitySpecialIndividualProperty.Value.ToString();
                     }
-
-                    if (abilitySpecialIndividualProperty.Name == "LinkedSpecialBonus")
+                    else if (abilitySpecialIndividualProperty.Name == "LinkedSpecialBonus")
                     {
-                        currentLinkedSpecialBonus = abilitySpecialIndividualProperty.Value.ToString();
-                        continue;
+                        abilityLinkedSpecialBonus = abilitySpecialIndividualProperty.Value.ToString();
                     }
-
-                    // construct the special attribute
-                    DotaAbilitySpecialSchemaItem abilitySpecial = new DotaAbilitySpecialSchemaItem()
+                    else if (abilitySpecialIndividualProperty.Name == "RequiresScepter")
                     {
-                        Name = abilitySpecialIndividualProperty.Name,
-                        Value = abilitySpecialIndividualProperty.Value.ToString(),
-                        VarType = currentVarType
-                    };
-
-                    abilitySpecials.Add(abilitySpecial);
+                        abilityRequiresScepter = abilitySpecialIndividualProperty.Value.ToString() == "1";
+                    }
+                    else if (abilitySpecialProperty.Name == "LinkedSpecialBonusOperation")
+                    {
+                        // no op until we want to handle this
+                    }
+                    else
+                    {
+                        abilityName = abilitySpecialIndividualProperty.Name;
+                        abilityValue = abilitySpecialIndividualProperty.Value.ToString();
+                    }
                 }
+
+                // construct the special attribute
+                DotaAbilitySpecialSchemaItem abilitySpecial = new DotaAbilitySpecialSchemaItem()
+                {
+                    Name = abilityName,
+                    Value = abilityValue,
+                    VarType = abilityVarType,
+                    LinkedSpecialBonus = abilityLinkedSpecialBonus,
+                    RequiresScepter = abilityRequiresScepter
+                };
+
+                abilitySpecials.Add(abilitySpecial);
             }
 
             return abilitySpecials;

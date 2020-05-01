@@ -8,27 +8,26 @@ namespace SourceSchemaParser
     {
         public DotaSchemaMapperProfile()
         {
-            CreateMap<DotaHeroSchemaItem, HeroSchemaModel>();
-            CreateMap<DotaSchema, Steam.Models.DOTA2.SchemaModel>();
-            CreateMap<DotaSchemaGameInfo, SchemaGameInfoModel>();
-            CreateMap<DotaSchemaRarity, SchemaRarityModel>();
-            CreateMap<DotaSchemaColor, SchemaColorModel>();
-            CreateMap<DotaSchemaItem, Steam.Models.DOTA2.SchemaItemModel>();
-            CreateMap<DotaSchemaPrefab, SchemaPrefabModel>();
-            CreateMap<DotaSchemaItemSet, Steam.Models.DOTA2.SchemaItemSetModel>();
-            CreateMap<DotaSchemaPrefab, SchemaPrefabModel>();
-            CreateMap<DotaSchemaItemAutograph, SchemaItemAutographModel>();
-            CreateMap<DotaSchemaQuality, SchemaQualityModel>();
-            CreateMap<DotaSchemaPrefabCapability, SchemaPrefabCapabilityModel>();
-            CreateMap<DotaSchemaItemTool, SchemaItemToolModel>();
-            CreateMap<DotaSchemaItemToolUsage, SchemaItemToolUsageModel>();
-            CreateMap<DotaSchemaItemPriceInfo, SchemaItemPriceInfoModel>();
-            CreateMap<DotaSchemaItemStaticAttribute, SchemaItemStaticAttributeModel>();
-            CreateMap<DotaItemAbilitySchemaItem, ItemAbilitySchemaItemModel>();
-            CreateMap<DotaAbilitySpecialSchemaItem, AbilitySpecialSchemaItemModel>();
-            CreateMap<DotaAbilitySchemaItem, AbilitySchemaItemModel>();
-            CreateMap<DotaItemBuildSchemaItem, ItemBuildSchemaItemModel>();
-            CreateMap<DotaItemBuildGroupSchemaItem, ItemBuildGroupSchemaItemModel>();
+            CreateMap<DotaHeroSchemaItem, Hero>();
+            CreateMap<DotaSchema, Schema>();
+            CreateMap<DotaSchemaGameInfo, SchemaGameInfo>();
+            CreateMap<DotaSchemaRarity, SchemaRarity>();
+            CreateMap<DotaSchemaColor, SchemaColor>();
+            CreateMap<DotaSchemaItem, SchemaItem>();
+            CreateMap<DotaSchemaPrefab, SchemaPrefab>();
+            CreateMap<DotaSchemaItemSet, SchemaItemSet>();
+            CreateMap<DotaSchemaItemAutograph, SchemaItemAutograph>();
+            CreateMap<DotaSchemaQuality, SchemaQuality>();
+            CreateMap<DotaSchemaPrefabCapability, SchemaPrefabCapability>();
+            CreateMap<DotaSchemaItemTool, SchemaItemTool>();
+            CreateMap<DotaSchemaItemToolUsage, SchemaItemToolUsage>();
+            CreateMap<DotaSchemaItemPriceInfo, SchemaItemPriceInfo>();
+            CreateMap<DotaSchemaItemStaticAttribute, SchemaItemStaticAttribute>();
+            CreateMap<DotaItemAbilitySchemaItem, ItemAbility>();
+            CreateMap<DotaAbilitySpecialSchemaItem, HeroAbilitySpecial>();
+            CreateMap<DotaAbilitySchemaItem, HeroAbility>();
+            CreateMap<DotaItemBuildSchemaItem, ItemBuild>();
+            CreateMap<DotaItemBuildGroupSchemaItem, ItemBuildGroup>();
             CreateMap<DotaLeague, LeagueModel>();
         }
     }
