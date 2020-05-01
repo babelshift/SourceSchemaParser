@@ -13,7 +13,7 @@ namespace SourceSchemaParser
             CreateMap<DotaSchemaGameInfo, SchemaGameInfo>();
             CreateMap<DotaSchemaRarity, SchemaRarity>();
             CreateMap<DotaSchemaColor, SchemaColor>();
-            CreateMap<DotaSchemaItem, SchemaItem>();
+            CreateMap<DotaSchemaItem, Steam.Models.DOTA2.SchemaItem>();
             CreateMap<DotaSchemaPrefab, SchemaPrefab>();
             CreateMap<DotaSchemaItemSet, SchemaItemSet>();
             CreateMap<DotaSchemaItemAutograph, SchemaItemAutograph>();
