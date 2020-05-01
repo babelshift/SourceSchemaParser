@@ -94,7 +94,7 @@ namespace SourceSchemaParser
             }
         }
 
-        public IReadOnlyCollection<Hero> GetDotaHeroes(IEnumerable<string> vdf)
+        public IReadOnlyCollection<HeroSchema> GetDotaHeroes(IEnumerable<string> vdf)
         {
             ValidateInput(vdf);
 
@@ -104,8 +104,8 @@ namespace SourceSchemaParser
             if (schema.TryGetValue("DOTAHeroes", out item))
             {
                 var heroes = JsonConvert.DeserializeObject<IList<DotaHeroSchemaItem>>(item.ToString(), new SchemaItemToDotaHeroJsonConverter());
-                var heroModels = mapper.Map<IList<DotaHeroSchemaItem>, IList<Hero>>(heroes);
-                return new ReadOnlyCollection<Hero>(heroModels);
+                var heroModels = mapper.Map<IList<DotaHeroSchemaItem>, IList<HeroSchema>>(heroes);
+                return new ReadOnlyCollection<HeroSchema>(heroModels);
             }
             else
             {

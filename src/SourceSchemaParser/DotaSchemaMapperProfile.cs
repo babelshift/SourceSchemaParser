@@ -8,7 +8,7 @@ namespace SourceSchemaParser
     {
         public DotaSchemaMapperProfile()
         {
-            CreateMap<DotaHeroSchemaItem, Hero>();
+            CreateMap<DotaHeroSchemaItem, HeroSchema>();
             CreateMap<DotaSchema, Schema>();
             CreateMap<DotaSchemaGameInfo, SchemaGameInfo>();
             CreateMap<DotaSchemaRarity, SchemaRarity>();
